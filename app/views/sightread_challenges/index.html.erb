@@ -1,0 +1,7 @@
+<h1>Welcome to Your Sight Reading Challenges</h1>
+
+
+<% @sightreadings.each do |sightreading| %>
+	<p><%= link_to sightreading.title, sightread_challenge_path(sightreading) %></p>
+	<p><%= sightreading.tempo %>, <%= sightreading.time_sig %>, <%= sightreading.key_sig %></p>
+	<% end %>
