@@ -1,9 +1,9 @@
 class SightreadChallengesController < ApplicationController
 	def index
-		@sightreadings = SightreadingChallenge.all
+		@sightreadings = SightreadChallenge.all
 	end
 
 	def show
-		@sightreading = SightreadingChallenge.find(params[:id])
+		@sightreading = SightreadChallenge.find(params[:id])
 	end
 end

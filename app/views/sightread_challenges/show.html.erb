@@ -1,9 +1,11 @@
 <div class = 'booyah-box col-xs-10 col-xs-offset-1'>
+	<iframe src="http://static.vexflow.com/embed/articles/2672" width="100%" height="192" frameborder="0" scrolling="no"></iframe>
+	
 	<h1><%= @sightreading.title %></h1>
 	<p>tempo = <%= @sightreading.tempo %></p>
 	<p><%= @sightreading.time_sig %>, <%= @sightreading.key_sig %></p>
 
-	<p><% @sightreading.challenge_notes.each do |note| %>
+	<p><% @sightreading.notes.each do |note| %>
 	[<%= note.note_name %>, <%= note.midi_num %>, <%= note.duration %>]
 	<% end %></p>
 </div>
