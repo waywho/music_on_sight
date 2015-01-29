@@ -1,7 +1,19 @@
 <div class = 'booyah-box col-xs-10 col-xs-offset-1'>
-	<iframe src="http://static.vexflow.com/embed/articles/2672" width="100%" height="192" frameborder="0" scrolling="no"></iframe>
-	
 	<h1><%= @sightreading.title %></h1>
+	<div class="vex-tabdiv" width=680 scale=1.0>
+	
+      options space=20
+
+    options player=true tempo = 60 instrument=acoustic_grand_piano
+    tabstave notation=true tablature=false
+    time=4/4 
+    notes :q C-C-G-G/4 | A-A/4 :h G/4
+
+      options space=25
+
+    </div>
+	
+	
 	<p>tempo = <%= @sightreading.tempo %></p>
 	<p><%= @sightreading.time_sig %>, <%= @sightreading.key_sig %></p>
 
