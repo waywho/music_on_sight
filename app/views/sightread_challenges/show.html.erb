@@ -20,4 +20,19 @@
 	<p><% @sightreading.notes.each do |note| %>
 	[<%= note.note_name %>, <%= note.midi_num %>, <%= note.duration %>]
 	<% end %></p>
+	<button onclick="toggleLiveInput()" class = 'btn btn-success'>use live input</button>
+	<br />
+	<br />
+	<div class = 'col-xs-4'>
+		<div id="detector" class="vague">
+			<div class="pitch"><span id="pitch">--</span>Hz</div>
+			<div class="note"><span id="note">--</span></div>   
+			<canvas id="output" width=300 height=42></canvas>
+			<div id="detune"><span id="detune_amt">--</span><span id="flat">cents &#9837;</span><span id="sharp">cents &#9839;</span></div>
+		</div>
+	</div>
+	<div class = 'col-xs-8'>
+		<canvas id="canvas" height="300" width="650" ></canvas>
+	</div>
+ 	
 </div>

@@ -15,4 +15,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require vextab-div
+//= require pitchdetect
 //= require_tree .
