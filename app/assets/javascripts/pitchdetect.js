@@ -54,6 +54,17 @@ var detectorElem,
     var canvasHeight = 300;
     var ctx;
 
+function drawStaff () {
+		ctx.beginPath();
+		
+		for(i = 70; i<= 190; i+=30){
+		ctx.moveTo(0, i);
+		ctx.lineTo(650, i);
+		ctx.stroke();
+	}
+		ctx.closePath();
+	};
+
 window.onload = function() {
 	audioContext = new AudioContext();
 	MAX_SIZE = Math.max(4,Math.floor(audioContext.sampleRate/5000));	// corresponds to a 5kHz signal
@@ -68,14 +79,7 @@ window.onload = function() {
 	// request.send();
 
 	ctx = document.getElementById("canvas").getContext("2d");
-		ctx.beginPath();
-	for(i = 70; i<= 190; i+=30){
-		ctx.moveTo(0, i);
-		ctx.lineTo(650, i);
-		ctx.stroke();
-	}
-		ctx.closePath();
-	
+	drawStaff();
 
 	detectorElem = document.getElementById( "detector" );
 	canvasElem = document.getElementById( "output" );
@@ -393,8 +397,8 @@ function updatePitch( time ) {
 		y2 = Math.round(pitch)/10;
 
 		ctx.beginPath();
-		ctx.fillStyle='#000000';
-		ctx.arc(column, y, 10, 0, 2 * Math.PI);
+		ctx.arc(column, y, 10, 0, 2 * Math.PI, false);
+		ctx.fillStyle = '#000000';
 		ctx.stroke();
 		ctx.closePath();
         // ctx.fillRect(column, y 1, y2);
@@ -426,10 +430,5 @@ function updatePitch( time ) {
   function clearCanvas() {
         ctx.clearRect(0, 0, canvasWidth, canvasHeight);
         		ctx.beginPath();
-	for(i = 70; i<= 190; i+=30){
-		ctx.moveTo(0, i);
-		ctx.lineTo(650, i);
-		ctx.stroke();
-	}
-		ctx.closePath();
+        drawStaff();
     }
