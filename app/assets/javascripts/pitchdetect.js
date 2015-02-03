@@ -386,23 +386,52 @@ function updatePitch( time ) {
  	} else {
 	 	detectorElem.className = "confident";
 	 	pitch = ac;
+	
+	 	// var time = new Date().get;
 	 	pitchElem.innerText = Math.round( pitch ) ;
-	 	pitchList.push(Math.round( pitch ));
 
 	 	var note =  noteFromPitch( pitch );
 		noteElem.innerHTML = noteStrings[note%12];
 		noteList.push(note%12);
-		
-		y = 235 - (15 * noteNo[note%12]);
-		y2 = Math.round(pitch)/10;
+	 	pitchList.push(note);
 
-		ctx.beginPath();
-		ctx.arc(column, y, 10, 0, 2 * Math.PI, false);
-		ctx.fillStyle = '#000000';
-		ctx.stroke();
-		ctx.closePath();
-        // ctx.fillRect(column, y 1, y2);
-        column += 1;
+
+	 	var lastFour = pitchList.slice(-6);
+	 	console.log(lastFour);
+	 	var min = 10000;
+	 	var max = 0;
+
+	 	$.each(lastFour,function(key, value){
+	 		// var adjustedValue = value;
+	 		// if(Math.abs(adjustedValue - pitch) > 10) {
+	 		// 	adjustedValue = pitch;
+	 		// };
+	 		// sum = sum + adjustedValue;
+	 		if(value > max) {
+	 			max = value;
+	 		} if(value < min) {
+	 			min = value;
+	 		}
+
+	 	});
+
+	 	// pitch = sum/lastFour.length;
+
+	 	if(max-min < 1){
+		 	y = 235 - (15 * noteNo[note%12]);
+			y2 = Math.round(pitch)/10;
+
+			ctx.beginPath();
+			ctx.arc(column, y, 10, 0, 2 * Math.PI, false);
+			ctx.fillStyle = '#000000';
+			ctx.stroke();
+			ctx.closePath();
+	        // ctx.fillRect(column, y 1, y2);
+	        column += 1;
+	 	};
+
+		
+
 
         if(column >= canvasWidth) {
             column = 0;

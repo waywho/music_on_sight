@@ -1,5 +1,6 @@
 <div class = 'booyah-box col-xs-10 col-xs-offset-1'>
 	<h1><%= @sightreading.title %></h1>
+	<div class = 'col-xs-12 col-xs-offset-2'>
 	<div class="vex-tabdiv" width=680 scale=1.0>
 	
       options space=20
@@ -12,18 +13,16 @@
       options space=25
 
     </div>
+	</div>
 	
-	
-	<p>tempo = <%= @sightreading.tempo %></p>
-	<p><%= @sightreading.time_sig %>, <%= @sightreading.key_sig %></p>
-
-	<p><% @sightreading.notes.each do |note| %>
+	<div class = 'col-xs-12'>
+	<p>tempo = <%= @sightreading.tempo %> <%= @sightreading.time_sig %>, <%= @sightreading.key_sig %>
+		<% @sightreading.notes.each do |note| %>
 	[<%= note.note_name %>, <%= note.midi_num %>, <%= note.duration %>]
 	<% end %></p>
-	<button onclick="toggleLiveInput()" class = 'btn btn-success'>use live input</button>
-	<br />
-	<br />
-	<div class = 'col-xs-4'>
+	</div>
+
+	<div class = 'col-xs-4 col-md-4'>
 		<div id="detector" class="vague">
 			<div class="pitch"><span id="pitch">--</span>Hz</div>
 			<div class="note"><span id="note">--</span></div>   
@@ -31,8 +30,12 @@
 			<div id="detune"><span id="detune_amt">--</span><span id="flat">cents &#9837;</span><span id="sharp">cents &#9839;</span></div>
 		</div>
 	</div>
-	<div class = 'col-xs-8'>
+	<div class = 'col-xs-8 col-md-6'>
 		<canvas id="canvas" height="300" width="650" ></canvas>
 	</div>
- 	
+	<br class='clr' />
+	<br />
+	<div class = 'mic'>
+ 		<button onclick="toggleLiveInput()" id= 'mic' class = 'btn btn-success'><!-- use live input --></button>
+ 	</div>
 </div>
