@@ -1,7 +1,12 @@
-<h1>Welcome to Your Sight Reading Challenges</h1>
+<div class = "booyah-box col-xs-10 col-xs-offset-1">
+	<br />
+	<h1>Welcome to Your Sight Reading Challenges</h1>
 
+	<br />
+	<% @sightreadings.each do |sightreading| %>
+		<p><h2><%= link_to sightreading.title, sightread_challenge_path(sightreading) %></h2></p>
+		<p><%= sightreading.tempo %>, <%= sightreading.time_sig %>, <%= sightreading.key_sig %></p>
+		<% end %>
+	<hr />
 
-<% @sightreadings.each do |sightreading| %>
-	<p><%= link_to sightreading.title, sightread_challenge_path(sightreading) %></p>
-	<p><%= sightreading.tempo %>, <%= sightreading.time_sig %>, <%= sightreading.key_sig %></p>
-	<% end %>
+</div>
