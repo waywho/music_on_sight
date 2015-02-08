@@ -23,25 +23,24 @@
 	</div>
 	<br class='clr' />
 
-	<div class = 'col-xs-12 col-sm-4'>
-		<div id="detector" class="vague">
-			<div class="pitch"><span id="pitch">--</span>Hz</div>
-			<div class="note"><span id="note">--</span></div>   
-			<canvas id="output" width=300 height=42></canvas>
-			<div id="detune"><span id="detune_amt">--</span><span id="flat">cents &#9837;</span><span id="sharp">cents &#9839;</span></div>
-		</div>
-		<br />
-	</div>
-	
 	<div class = 'col-xs-12 col-sm-8'>
 		<canvas id="canvas" height="300" width="650" ></canvas>
 	</div>
 
-	<br class = 'clr' />
-	<br />
-		<div class = 'mic col-xs-12 col-sm-8'>
- 		<button onclick="toggleLiveInput()" id= 'mic' class = 'btn btn-success'><!-- use live input --></button>
- 		</div>
- 		<button id= 'metronome' class ='metronome btn btn-success'>Metronome</button>
+	<div class = 'col-xs-12 col-sm-4'>
+		<div id="detector" class="vague">
+			<div class="pitch"><span id="pitch">--</span>Hz</div>
+			<div class="note"><span id="note">--</span></div>   
+			<div id="output"></div>
+			<div id="detune"><span id="detune_amt">--</span><span id="flat">cents &#9837;</span><span id="sharp">cents &#9839;</span></div>
+		</div>
+		<br class = 'clr' />
+
+		<button onclick="toggleLiveInput()" id= 'mic' class = 'btn btn-success'><!-- use live input --></button>
+ 		<br />
+ 		<button id= 'metronome' class ='metronome btn btn-success'>Start</button>
+ 		<br />
  		<button id= 'stop' class ='metronome btn btn-success'>Stop</button>
+	</div>	
+ 	
 </div>

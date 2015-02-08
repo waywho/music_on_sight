@@ -62,13 +62,14 @@ h1, h2 {
 
 .mic {
 	padding: auto;
-	margin: 0 hauto;
+	margin: 0 auto;
 }
 
 #mic {
 	background-image: url('mic.png');
-	height: 128px;
-	width: 128px;
+	background-size: 50px 50px;
+	height: 50px;
+	width: 50px;
 }
 
 .clr {

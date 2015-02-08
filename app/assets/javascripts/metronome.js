@@ -32,18 +32,28 @@
 
 $(document).ready(function() {
 	$('#metronome').click(function() {
-		noteTime = context.currentTime + secondsPerBeat;
+     	clearCanvas();
+		if(isPlaying) {
+			noteTime = context.currentTime + secondsPerBeat;
 
-		for(i=0; i<4+example.length+1; i++) {
-			if(i < 4) {
-			tick(noteTime);
-			timeList.push(["prep", noteTime]);
-			noteTime += secondsPerBeat;
-			} else {
-			timeList.push([example[i-5], noteTime]);
-			noteTime += secondsPerBeat;
+		setTimeout(updatePitch, tempoTime*5); //start after 5 counts
+
+		//setting up 5 counts and the expected time of the exercise notes
+			for(i=0; i<4+example.length+1; i++) {
+				if(i < 4) {
+				tick(noteTime);
+				timeList.push(["prep", noteTime]);
+				noteTime += secondsPerBeat;
+				} else {
+				timeList.push([example[i-5], noteTime]);
+				noteTime += secondsPerBeat;
+				};
 			};
-		};
+		} else { alert("Please turn on your microphone.");
+	};
+
+
+
 		// clearInterval(metro);
 		// metro = setInterval(tick, tempoTime);
 

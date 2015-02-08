@@ -1,5 +1,5 @@
 #note { 
-	font-size: 164px;
+	font-size: 30px;
 }
 
 .droptarget { 
@@ -16,27 +16,31 @@ div.vague {
 
 #note { 
 	display: inline-block; 
-	height:180px; 
+	height:40px; 
 	text-align: left;
 }
 
 #detector { 
-	width: 300px; 
-	height: 300px; 
+	width: 100px; 
+	height: 100px; 
 	border: 4px solid gray; 
 	border-radius: 8px; 
-	text-align: center; padding-top: 10px;
+	text-align: center; 
+	padding-top: 5px;
 }
 	
 #output { 
-	width: 300px; 
-	height: 42px; 
+	display: none; 
+	width: 50px; 
+	height: 50px; 
 }
 
 #flat { 
+	height: 16px;
 	display: none; 
 }
 #sharp { 
+	height: 16px;
 	display: none; 
 }
 .flat #flat { 
@@ -59,6 +63,7 @@ div.vague {
 #controls {
     text-align: center;
 }
-#start_button, #stop_button {
-    font-size: 16pt;
+
+#detune {
+	height:16px;
 }

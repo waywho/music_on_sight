@@ -143,7 +143,7 @@ function gotStream(stream) {
     analyser = audioContext.createAnalyser();
     analyser.fftSize = 2048;
     sourceNode.connect( analyser );
-    updatePitch();
+    // updatePitch();
     // evalPitch();
 }
 
@@ -180,7 +180,7 @@ function toggleLiveInput() {
         sourceNode = null;
         analyser = null;
         isPlaying = false;
-        clearCanvas();
+        // clearCanvas();
 		if (!window.cancelAnimationFrame)
 			window.cancelAnimationFrame = window.webkitCancelAnimationFrame;
         window.cancelAnimationFrame( rafID );
@@ -199,7 +199,7 @@ function toggleLiveInput() {
             },
         }, gotStream);
     isPlaying = true;
-    }
+    };
 }
 
 // function togglePlayback() {
