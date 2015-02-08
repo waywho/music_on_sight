@@ -392,16 +392,15 @@ function updatePitch( time ) {
 
 	 	var note =  noteFromPitch( pitch );
 		noteElem.innerHTML = noteStrings[note%12];
-		noteList.push(note%12);
+
 	 	pitchList.push(note);
 
 
-	 	var lastFour = pitchList.slice(-6);
-	 	console.log(lastFour);
+	 	var lastSix = pitchList.slice(-6);
 	 	var min = 10000;
 	 	var max = 0;
 
-	 	$.each(lastFour,function(key, value){
+	 	$.each(lastSix,function(key, value){
 	 		// var adjustedValue = value;
 	 		// if(Math.abs(adjustedValue - pitch) > 10) {
 	 		// 	adjustedValue = pitch;
@@ -420,6 +419,7 @@ function updatePitch( time ) {
 	 	if(max-min < 1){
 		 	y = 235 - (15 * noteNo[note%12]);
 			y2 = Math.round(pitch)/10;
+			noteList.push([noteStrings[note%12], audioContext.currentTime]);
 
 			ctx.beginPath();
 			ctx.arc(column, y, 10, 0, 2 * Math.PI, false);

@@ -15,4 +15,5 @@
 //= require jquery_ujs
 //= require vextab-div
 //= require pitchdetect
+//= require metronome
 //= require_tree .
