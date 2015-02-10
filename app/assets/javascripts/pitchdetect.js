@@ -56,14 +56,17 @@ var detectorElem,
 
 function drawStaff () {
 		ctx.beginPath();
-		
 		for(i = 70; i<= 190; i+=30){
-		ctx.moveTo(0, i);
-		ctx.lineTo(650, i);
-		ctx.stroke();
-	}
+			ctx.moveTo(0, i);
+			ctx.fillStyle = "black";
+			ctx.lineTo(650, i);
+			ctx.stroke();
+		}
 		ctx.closePath();
 	};
+
+
+
 
 window.onload = function() {
 	audioContext = new AudioContext();
@@ -80,6 +83,7 @@ window.onload = function() {
 
 	ctx = document.getElementById("canvas").getContext("2d");
 	drawStaff();
+	drawTempoLine();
 
 	detectorElem = document.getElementById( "detector" );
 	canvasElem = document.getElementById( "output" );
@@ -430,9 +434,6 @@ function updatePitch( time ) {
 	        column += 1;
 	 	};
 
-		
-
-
         if(column >= canvasWidth) {
             column = 0;
             clearCanvas();
@@ -451,7 +452,7 @@ function updatePitch( time ) {
 		}
 	}
 
-	if (!window.requestAnimationFrame)
+	if (!window.requestAnimationFrame) 
 		window.requestAnimationFrame = window.webkitRequestAnimationFrame;
 	rafID = window.requestAnimationFrame( updatePitch );
 };
