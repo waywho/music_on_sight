@@ -62,13 +62,13 @@ $(document).ready(function() {
 		// setInterval(drawTime, 1000/60);
 
 		//setting up 5 counts and the expected time of the exercise notes
-			for(i=0; i<4+example.length+1; i++) {
-				if(i < 4) {
+			for(i=0; i<3+example.length+1; i++) {
+				if(i <= 3) {
 				tick(noteTime);
 				timeList.push(["prep", noteTime]);
 				noteTime += secondsPerBeat;
 				} else {
-				timeList.push([example[i-5], noteTime]);
+				timeList.push([example[i-4], noteTime]);
 				noteTime += secondsPerBeat;
 				};
 			};
@@ -100,6 +100,7 @@ $(document).ready(function() {
 			window.cancelAnimationFrame = window.webkitCancelAnimationFrame;
         window.cancelAnimationFrame( rafID );
     } 
+		evalNotes();
 	// function() {
 	// 	// oscillator1.disconnect();
 	});
