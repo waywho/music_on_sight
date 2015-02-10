@@ -65,8 +65,8 @@ $(document).ready(function() {
 		// setTimeout(beatSoundStart, time );
 	});
 	$('#stop').click(function() {
-		tick;
 		clearInterval(metro);
+		evalNotes();
 	// function() {
 	// 	// oscillator1.disconnect();
 	});

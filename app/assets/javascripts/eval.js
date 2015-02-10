@@ -8,18 +8,19 @@
 
 var score;
 
-function evalNotes {
-	for(i=0; i<noteList.length; i++) {
-	var ranger = secondsPerBeat * 0.9 //tolerance range
+function evalNotes() {
+	for(i=0; i<timeList.length-4; i++) {
+	var ranger = secondsPerBeat * 0.2 //tolerance range
 	var upperTime = timeList[i+4][1] + ranger
 	var lowerTime = timeList[i+4][1] - ranger
-
-	if(noteList[i][1] <= upperTime && noteList[i][1] >= lowertime) {
-		if(noteList[i][1]==timeList[i+4][1]){
-			score += 1;
-			noteList.slice(i)
+	
+		for(j=0; j<noteList.length; j++) {
+				if(noteList[j][1] <= upperTime && noteList[j][1] >= lowerTime) {
+					if(noteList[j][1]==timeList[i+4][1]){
+						console.log(noteList[j][1]);
+				score += 1;
+				};
 			};
 		};
 	};
-
 };
