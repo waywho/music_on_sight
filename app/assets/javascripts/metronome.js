@@ -1,6 +1,6 @@
 	var context = new AudioContext() || new webkitAudioContext(); //create the audio container
 
-	var	tempo = 60
+	var	tempo = 40
 	var tempoTime = 60000/tempo
 	var secondsPerBeat = 60.0/tempo
 	var metro;

@@ -16,4 +16,5 @@
 //= require vextab-div
 //= require pitchdetect
 //= require metronome
+//= require eval
 //= require_tree .

@@ -83,7 +83,7 @@ window.onload = function() {
 
 	ctx = document.getElementById("canvas").getContext("2d");
 	drawStaff();
-	drawTempoLine();
+	// drawTempoLine();
 
 	detectorElem = document.getElementById( "detector" );
 	canvasElem = document.getElementById( "output" );
