@@ -39,13 +39,13 @@ $(document).ready(function() {
 		setTimeout(updatePitch, tempoTime*5); //start after 5 counts
 
 		//setting up 5 counts and the expected time of the exercise notes
-			for(i=0; i<4+example.length+1; i++) {
-				if(i < 4) {
+			for(i=0; i<3+example.length+1; i++) {
+				if(i <= 3) {
 				tick(noteTime);
 				timeList.push(["prep", noteTime]);
 				noteTime += secondsPerBeat;
 				} else {
-				timeList.push([example[i-5], noteTime]);
+				timeList.push([example[i-4], noteTime]);
 				noteTime += secondsPerBeat;
 				};
 			};
