@@ -9,19 +9,20 @@
 	var example = ["C", "C", "G", "G", "A", "A", "G"]
 
 	var noteLength = 0.05;
+    var ctx2;
 
-	// function drawTime() {
-	// 	var lineTime = new Date();
-	// 	var msec = lineTime.getMilliseconds();
-	// 	drawTempoLine(msec);
-	// 	};
+	function drawTime() {
+		var lineTime = new Date();
+		var msec = lineTime.getMilliseconds();
+		drawTempoLine(msec);
+		};
 
-	// function drawTempoLine(xtime) {
-	// 		ctx.beginPath();
-	// 		ctx.moveTo(xtime/60, 10);
-	// 		ctx.lineTo(xtime/60, 290);
-	// 		ctx.stroke();
-	// };
+	function drawTempoLine(xtime) {
+			ctx2.beginPath();
+			ctx2.moveTo(xtime/60, 0);
+			ctx2.lineTo(xtime/60, 50);
+			ctx2.stroke();
+	};
 	
 
 	function tick(time) {
@@ -48,18 +49,19 @@
 
 
 $(document).ready(function() {
-
+	ctx2 = document.getElementById("canvas2").getContext("2d");
+	drawTempoLine(600);
 	
 	$('#metronome').click(function() {
      	clearCanvas();
 		if(isPlaying) {
 			noteTime = context.currentTime + secondsPerBeat;
 			
-		// drawTempoLine(600);
+	
 
 		setTimeout(updatePitch, tempoTime*5); //start after 5 counts
 		// setTimeout(setInterval(drawTempoLine(msec), 1000), tempoTime*5);
-		// setInterval(drawTime, 1000/60);
+		setInterval(drawTime, 1000/60);
 
 		//setting up 5 counts and the expected time of the exercise notes
 			for(i=0; i<3+example.length+1; i++) {

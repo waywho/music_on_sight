@@ -65,9 +65,6 @@ function drawStaff () {
 		ctx.closePath();
 	};
 
-
-
-
 window.onload = function() {
 	audioContext = new AudioContext();
 	MAX_SIZE = Math.max(4,Math.floor(audioContext.sampleRate/5000));	// corresponds to a 5kHz signal
@@ -82,6 +79,7 @@ window.onload = function() {
 	// request.send();
 
 	ctx = document.getElementById("canvas").getContext("2d");
+
 	drawStaff();
 	// drawTempoLine();
 
@@ -246,12 +244,12 @@ var noteStrings = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "
 var noteNo = [1, 1, 2, 2, 3, 4, 4, 5, 5, 6, 6, 7];
 
 function noteFromPitch( frequency ) {
-	var noteNum = 12 * (Math.log( frequency / 440 )/Math.log(2) );
+	var noteNum = 12 * (Math.log( frequency / 220 )/Math.log(2) );
 	return Math.round( noteNum ) + 69;
 }
 
 function frequencyFromNoteNumber( note ) {
-	return 440 * Math.pow(2,(note-69)/12);
+	return 220 * Math.pow(2,(note-69)/12);
 }
 
 function centsOffFromPitch( frequency, note ) {
@@ -427,7 +425,7 @@ function updatePitch( time ) {
 
 			ctx.beginPath();
 			ctx.arc(column, y, 10, 0, 2 * Math.PI, false);
-			ctx.fillStyle = '#000000';
+			ctx.arc.fillStyle = '#000000';
 			ctx.stroke();
 			ctx.closePath();
 	        // ctx.fillRect(column, y 1, y2);
