@@ -36,6 +36,7 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext;
 var audioContext = null;
 var isPlaying = false;
 var sourceNode = null;
+var lowfilter = null;
 var analyser = null;
 var theBuffer = null;
 var DEBUGCANVAS = null;
@@ -77,6 +78,7 @@ window.onload = function() {
 	// 	} );
 	// }
 	// request.send();
+	lowfilter = audioContext.createBiquadFilter();
 
 	ctx = document.getElementById("canvas").getContext("2d");
 
@@ -140,13 +142,16 @@ function getUserMedia(dictionary, callback) {
 function gotStream(stream) {
     // Create an AudioNode from the stream.
     sourceNode = audioContext.createMediaStreamSource(stream);
+   	sourceNode.connect(lowfilter);
+   	lowfilter.type = 'lowshelf';
+   	lowfilter.frequency.value = 440; //boosting the lower frequencies
+   	lowfilter.gain.value = 30;
 
     // Connect it to the destination.
     analyser = audioContext.createAnalyser();
-    analyser.fftSize = 2048;
-    sourceNode.connect( analyser );
+    analyser.fftSize = 2048; //WH: reduced fftsize to see effect
+    lowfilter.connect( analyser );
     // updatePitch();
-    // evalPitch();
 }
 
 // function toggleOscillator() {
@@ -241,15 +246,15 @@ var noteList = [];
 var pitchList = [];
 
 var noteStrings = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
-var noteNo = [1, 1, 2, 2, 3, 4, 4, 5, 5, 6, 6, 7];
+var noteNo = [0, 0, 1, 2, 2, 3, 3, 4, 5, 5, 6, 6, 7, 7, 8, 9, 9, 10, 10, 11, 12];
 
 function noteFromPitch( frequency ) {
-	var noteNum = 12 * (Math.log( frequency / 220 )/Math.log(2) );
+	var noteNum = 12 * (Math.log( frequency / 440 )/Math.log(2) ); //num of half steps away from A
 	return Math.round( noteNum ) + 69;
 }
 
 function frequencyFromNoteNumber( note ) {
-	return 220 * Math.pow(2,(note-69)/12);
+	return 440 * Math.pow(2,(note-69)/12);
 }
 
 function centsOffFromPitch( frequency, note ) {
@@ -398,7 +403,7 @@ function updatePitch( time ) {
 	 	pitchList.push(note);
 
 
-	 	var lastSix = pitchList.slice(-6);
+	 	var lastSix = pitchList.slice(-8);
 	 	var min = 10000;
 	 	var max = 0;
 
@@ -419,14 +424,16 @@ function updatePitch( time ) {
 	 	// pitch = sum/lastFour.length;
 
 	 	if(max-min < 1){
-		 	y = 235 - (15 * noteNo[note%12]);
-			y2 = Math.round(pitch)/10;
+	 		var y3 = (note - 69 + 64);
+		 	var y = 250 - (15 * noteNo[(y3%20)]);
+			var y2 = Math.round(pitch)/10;
+
 			noteList.push([noteStrings[note%12], audioContext.currentTime]);
 
 			ctx.beginPath();
 			ctx.arc(column, y, 10, 0, 2 * Math.PI, false);
-			ctx.arc.fillStyle = '#000000';
-			ctx.stroke();
+			ctx.fillStyle = 'black';
+			ctx.fill();
 			ctx.closePath();
 	        // ctx.fillRect(column, y 1, y2);
 	        column += 1;
@@ -448,7 +455,7 @@ function updatePitch( time ) {
 				detuneElem.className = "sharp";
 			detuneAmount.innerHTML = Math.abs( detune );
 		}
-	}
+	};
 
 	if (!window.requestAnimationFrame) 
 		window.requestAnimationFrame = window.webkitRequestAnimationFrame;

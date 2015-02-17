@@ -1,35 +1,35 @@
 	var context = new AudioContext() || new webkitAudioContext(); //create the audio container
 
-	var	tempo = 40
+	var	tempo = 60
 	var tempoTime = 60000/tempo
 	var secondsPerBeat = 60.0/tempo
 	var metro;
-	var timeList = [];
+	var expectedList = [];
 	var noteTime;
 	var example = ["C", "C", "G", "G", "A", "A", "G"]
 
 	var noteLength = 0.05;
     var ctx2;
 
-	function drawTime() {
-		var lineTime = new Date();
-		var msec = lineTime.getMilliseconds();
-		drawTempoLine(msec);
-		};
+	// function drawTime() {
+	// 	var lineTime = new Date();
+	// 	var msec = lineTime.getMilliseconds();
+	// 	drawTempoLine(msec);
+	// 	};
 
-	function drawTempoLine(xtime) {
-			ctx2.beginPath();
-			ctx2.moveTo(xtime/60, 0);
-			ctx2.lineTo(xtime/60, 50);
-			ctx2.stroke();
-	};
+	// function drawTempoLine(xtime) {
+	// 		ctx2.beginPath();
+	// 		ctx2.moveTo(xtime/60, 0);
+	// 		ctx2.lineTo(xtime/60, 50);
+	// 		ctx2.stroke();
+	// };
 	
 
 	function tick(time) {
 
 		// noteTime = context.currentTime
 		// console.log(noteTime);
-		// timeList.push(noteTime);
+		// expectedList.push(noteTime);
 
 		osc1 = context.createOscillator(); //create the sound source
 		osc1.type = "square"; //square wave;
@@ -50,7 +50,7 @@
 
 $(document).ready(function() {
 	ctx2 = document.getElementById("canvas2").getContext("2d");
-	drawTempoLine(600);
+	// drawTempoLine(600);
 	
 	$('#metronome').click(function() {
      	clearCanvas();
@@ -61,16 +61,16 @@ $(document).ready(function() {
 
 		setTimeout(updatePitch, tempoTime*5); //start after 5 counts
 		// setTimeout(setInterval(drawTempoLine(msec), 1000), tempoTime*5);
-		setInterval(drawTime, 1000/60);
+		// setInterval(drawTime, 1000/60);
 
 		//setting up 5 counts and the expected time of the exercise notes
 			for(i=0; i<3+example.length+1; i++) {
 				if(i <= 3) {
 				tick(noteTime);
-				timeList.push(["prep", noteTime]);
+				expectedList.push(["prep", noteTime]);
 				noteTime += secondsPerBeat;
 				} else {
-				timeList.push([example[i-4], noteTime]);
+				expectedList.push([example[i-4], noteTime]);
 				noteTime += secondsPerBeat;
 				};
 			};
