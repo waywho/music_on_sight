@@ -1,8 +1,8 @@
 	var context = new AudioContext() || new webkitAudioContext(); //create the audio container
 
-	var	tempo = 60
-	var tempoTime = 60000/tempo
-	var secondsPerBeat = 60.0/tempo
+	var	tempo = 40;
+	var tempoTime = 60000/tempo;
+	var secondsPerBeat = 60.0/tempo;
 	var metro;
 	var expectedList = [];
 	var noteTime;
@@ -10,20 +10,51 @@
 
 	var noteLength = 0.05;
     var ctx2;
+    var xtime = 0;
+    var DotOn = false;
+    var blink;
+    var	count = 0;
 
-	// function drawTime() {
-	// 	var lineTime = new Date();
-	// 	var msec = lineTime.getMilliseconds();
-	// 	drawTempoLine(msec);
-	// 	};
+	function drawTime() {
+		// var lineTime = new Date();
+		// var msec = lineTime.getMilliseconds();
+		if(xtime >= canvasWidth) {
+            xtime = 10;
+            clearCanvas();
+        };
+			metro = setInterval(function(){
+				count += 1;
+				xtime += 70;
+				column = 70 * count;
+				drawTempoDot(xtime);
+				}, tempoTime);
+		};
 
-	// function drawTempoLine(xtime) {
-	// 		ctx2.beginPath();
-	// 		ctx2.moveTo(xtime/60, 0);
-	// 		ctx2.lineTo(xtime/60, 50);
-	// 		ctx2.stroke();
-	// };
+	function drawTempoDot(xtime) {
+		ctx2.clearRect(0,0, 650, 50)
+		ctx2.beginPath();
+		ctx2.arc(xtime, 25, 10, 0, 2 * Math.PI, false);
+		ctx2.fillStyle = '#009933';
+		ctx2.fill();
+		ctx2.closePath();
+
+	};
 	
+	function drawCountInDot() {
+			if(DotOn==false) {
+				ctx2.clearRect(0,0, 50, 50);
+				ctx2.beginPath();
+				ctx2.arc(25, 25, 10, 0, 2 * Math.PI, false);
+				ctx2.fillStyle = 'red';
+				ctx2.fill();
+				ctx2.closePath();
+				DotOn = true;
+			} else {
+				ctx2.clearRect(0,0, 50, 50);
+				DotOn = false;
+			};
+	};
+
 
 	function tick(time) {
 
@@ -49,19 +80,19 @@
 
 
 $(document).ready(function() {
-	ctx2 = document.getElementById("canvas2").getContext("2d");
-	// drawTempoLine(600);
-	
+	ctx2 = $('#canvas2')[0].getContext('2d');
+	drawTempoDot(10);
+
 	$('#metronome').click(function() {
      	clearCanvas();
 		if(isPlaying) {
 			noteTime = context.currentTime + secondsPerBeat;
-			
-	
 
 		setTimeout(updatePitch, tempoTime*5); //start after 5 counts
-		// setTimeout(setInterval(drawTempoLine(msec), 1000), tempoTime*5);
-		// setInterval(drawTime, 1000/60);
+		// blink = setInterval(drawCountInDot, tempoTime/2);
+		setTimeout(drawTime, tempoTime*4);
+		
+
 
 		//setting up 5 counts and the expected time of the exercise notes
 			for(i=0; i<3+example.length+1; i++) {
@@ -78,7 +109,6 @@ $(document).ready(function() {
 	};
 
 
-
 		// clearInterval(metro);
 		// metro = setInterval(tick, tempoTime);
 
@@ -90,9 +120,9 @@ $(document).ready(function() {
 		// setTimeout(beatSoundStart, time );
 	});
 	$('#stop').click(function() {
-		clearInterval(metro);
-		if (isPlaying) {
+		if(isPlaying) {
         //stop playing and return
+        clearInterval(metro);
         sourceNode.disconnect();
         sourceNode = null;
         analyser = null;

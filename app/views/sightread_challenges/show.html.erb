@@ -22,15 +22,17 @@
 	<% end %></p>
 	</div>
 	<br class='clr' />
-
-	<div id="eval"></div>
-	<div class = 'col-xs-12 col-sm-10'>
-		<canvas id="canvas2"></canvas>
+	<div class = 'col-xs-2 col-sm-1'>
+		<div id='score' class = 'col-xs-12'><p><b>Score:</b></p></div>
+		<div id='eval' class = 'col-xs-12'><p><b>Evaluation</b></p></div>
+	</div>
+	<div class = 'col-xs-10 col-sm-8'>
+		<canvas id="canvas2" height="50" width="650"></canvas>
 		<canvas id="canvas" height="300" width="650" ></canvas>
 	</div>
 
 
-	<div class = 'controls col-xs-12 col-sm-2'>
+	<div class = 'panel col-xs-12 col-sm-2'>
 		<div id="detector" class="vague">
 			<div class="pitch"><span id="pitch">--</span>Hz</div>
 			<div class="note"><span id="note">--</span></div>   
@@ -38,7 +40,7 @@
 			<div id="detune"><span id="detune_amt">--</span><span id="flat">cents &#9837;</span><span id="sharp">cents &#9839;</span></div>
 		</div>
 		<br />
-
+		<div class ='controls col-xs-12 col-sm-12'>
 		<button onclick="toggleLiveInput()" id= 'mic' class = 'btn btn-success'><!-- use live input --></button>
  		<br />
  		<br />
@@ -46,6 +48,7 @@
  		<br />
  		<br />
  		<button id= 'stop' class ='metronome btn btn-success'>Stop</button>
+ 		</div>
 	</div>	
  	
 </div>

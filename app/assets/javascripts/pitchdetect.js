@@ -49,11 +49,11 @@ var detectorElem,
 	detuneElem,
 	detuneAmount;
 
-	    // Global Variables for Drawing
-    var column = 50;
-    var canvasWidth  = 650;
-    var canvasHeight = 300;
-    var ctx;
+// Global Variables for Drawing
+var column = 10;
+var canvasWidth  = 650;
+var canvasHeight = 300;
+var ctx;
 
 function drawStaff () {
 		ctx.beginPath();
@@ -62,7 +62,7 @@ function drawStaff () {
 			ctx.fillStyle = "black";
 			ctx.lineTo(650, i);
 			ctx.stroke();
-		}
+		};
 		ctx.closePath();
 	};
 
@@ -440,9 +440,9 @@ function updatePitch( time ) {
 	 	};
 
         if(column >= canvasWidth) {
-            column = 0;
+            column = 10;
             clearCanvas();
-        }
+        };
 		
 		var detune = centsOffFromPitch( pitch, note );
 		if (detune == 0 ) {

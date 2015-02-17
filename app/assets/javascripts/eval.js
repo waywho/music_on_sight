@@ -29,11 +29,12 @@ function evalNotes() {
 		};
 		if(hitNote==false) {
 			console.log("Missed note:" + i); //make the missed note red show the missed notes
-			$('#eval').append("<p>Missed note: " + i +"</p>");
+			$('#eval').append("<p><b>Missed note:</b> " + i +"</p>");
+
 		};
 	};
 	console.log(score);
-
+	$('#score').append(score);
 };
 
 //push the score up - button? call every 10 frame?
