@@ -9,13 +9,12 @@
 
 
 function evalNotes() {
-	var score = 1; //maybe hash? so each note's given score.
+	var score = 0; //maybe hash? so each note's given score.
 	for(i=1; i<expectedList.length-4; i++) {
 	var ranger = secondsPerBeat * 0.5; //tolerance range
 	var upperTime = expectedList[i+4][1] + ranger;
 	var lowerTime = expectedList[i+4][1] - ranger;
 	var hitNote = false;
-	var missedNotes = [];
 
 		for(j=1; j<noteList.length; j++) {
 			if(noteList[j][1] <= upperTime && noteList[j][1] >= lowerTime) {
@@ -29,12 +28,14 @@ function evalNotes() {
 		};
 		if(hitNote==false) {
 			console.log("Missed note:" + i); //make the missed note red show the missed notes
-			$('#eval').append("<p><b>Missed note:</b> " + i +"</p>");
-
+			$('#eval').append("Missed note: "+ i + " ");
 		};
 	};
 	console.log(score);
-	$('#score').append(score);
+	$('#score').append(" " + score);
+	if($.trim($('#eval').text()) != "") {
+		$('#eval').addClass("alert alert-info");
+	};
 };
 
 //push the score up - button? call every 10 frame?

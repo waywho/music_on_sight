@@ -1,6 +1,6 @@
 	var context = new AudioContext() || new webkitAudioContext(); //create the audio container
 
-	var	tempo = 40;
+	var	tempo = 60;
 	var tempoTime = 60000/tempo;
 	var secondsPerBeat = 60.0/tempo;
 	var metro;
@@ -10,32 +10,36 @@
 
 	var noteLength = 0.05;
     var ctx2;
-    var xtime = 0;
+    var drawPos = 0;
     var DotOn = false;
     var blink;
     var	count = 0;
+    var startPos = 75;
 
 	function drawTime() {
 		// var lineTime = new Date();
 		// var msec = lineTime.getMilliseconds();
-		if(xtime >= canvasWidth) {
-            xtime = 10;
+		if(drawPos >= canvasWidth) {
+            drawPos = startPos;
+            count = 0;
             clearCanvas();
-        };
-			metro = setInterval(function(){
-				count += 1;
-				xtime += 70;
-				column = 70 * count;
-				drawTempoDot(xtime);
-				}, tempoTime);
+        }
+		metro = setInterval(function(){
+			count += 1;
+			drawPos= 75 * count;
+			drawTempoDot(drawPos);
+			}, tempoTime);
 		};
 
 	function drawTempoDot(xtime) {
-		ctx2.clearRect(0,0, 650, 50)
+		ctx2.clearRect(0,0, canvasWidth, canvasHeight)
 		ctx2.beginPath();
-		ctx2.arc(xtime, 25, 10, 0, 2 * Math.PI, false);
+		ctx2.moveTo(xtime, 10);
+		ctx2.lineTo(xtime, 290)
+		// ctx2.arc(xtime, 25, 10, 0, 2 * Math.PI, false);
 		ctx2.fillStyle = '#009933';
-		ctx2.fill();
+		// ctx2.fill();
+		ctx2.stroke();
 		ctx2.closePath();
 
 	};
@@ -81,10 +85,15 @@
 
 $(document).ready(function() {
 	ctx2 = $('#canvas2')[0].getContext('2d');
-	drawTempoDot(10);
+	drawTempoDot(startPos);
 
 	$('#metronome').click(function() {
      	clearCanvas();
+     	expectedList = [];
+     	noteList = [];
+     	$('#eval').html("").removeClass("alert alert-info");
+     	$('#score').html("");
+
 		if(isPlaying) {
 			noteTime = context.currentTime + secondsPerBeat;
 

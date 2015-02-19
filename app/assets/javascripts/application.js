@@ -17,4 +17,5 @@
 //= require pitchdetect
 //= require metronome
 //= require eval
+//= require drawstaff
 //= require_tree .

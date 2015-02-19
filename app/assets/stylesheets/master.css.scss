@@ -60,11 +60,6 @@ h1, h2 {
 	text-align: center;
 }
 
-.mic {
-	padding: auto;
-	margin: 0 auto;
-}
-
 #mic {
 	background-image: url('mic.png');
 	background-size: 50px 50px;
@@ -84,12 +79,48 @@ a:hover {
 	text-decoration: none;
 }
 
-.controls {
-	margin: auto;
-	padding: auto;
+
+.side-panel {
+	min-height: 250px;
+	padding: 0px;
 }
 
-.panels {
-	margin: auto;
-	padding: auto;
+.controls {
+	margin: 0px 5px 5px 5px;
+	padding: 0px;
+}
+
+.detec-div {
+	min-height: 100px;
+	min-width: 100px;
+	margin-bottom: 5px;
+	margin-left: 5px;
+}
+
+.singpanel-div {
+	min-height: 250px;
+	margin-bottom: 30px;
+}
+
+.music-panel {
+	min-height: 250px;
+	min-width: 680px;
+	margin-bottom: 20px;
+}
+
+.result, #score, #eval {
+	padding: 0px;
+}
+
+#treble {
+	visibility: hidden;
+}
+
+#score, #eval {
+	height: 20px;
+}
+
+button {
+	margin-top: 5px;
+	margin-bottom: 5px;
 }

@@ -49,22 +49,6 @@ var detectorElem,
 	detuneElem,
 	detuneAmount;
 
-// Global Variables for Drawing
-var column = 10;
-var canvasWidth  = 650;
-var canvasHeight = 300;
-var ctx;
-
-function drawStaff () {
-		ctx.beginPath();
-		for(i = 70; i<= 190; i+=30){
-			ctx.moveTo(0, i);
-			ctx.fillStyle = "black";
-			ctx.lineTo(650, i);
-			ctx.stroke();
-		};
-		ctx.closePath();
-	};
 
 window.onload = function() {
 	audioContext = new AudioContext();
@@ -404,8 +388,8 @@ function updatePitch( time ) {
 
 
 	 	var lastSix = pitchList.slice(-8);
-	 	var min = 10000;
-	 	var max = 0;
+	 	var min = lastSix[0];
+	 	var max = lastSix[0];
 
 	 	$.each(lastSix,function(key, value){
 	 		// var adjustedValue = value;
@@ -425,22 +409,22 @@ function updatePitch( time ) {
 
 	 	if(max-min < 1){
 	 		var y3 = (note - 69 + 64);
-		 	var y = 250 - (15 * noteNo[(y3%20)]);
+		 	var y = 190 - (10 * noteNo[(y3%20)]);
 			var y2 = Math.round(pitch)/10;
 
 			noteList.push([noteStrings[note%12], audioContext.currentTime]);
 
 			ctx.beginPath();
-			ctx.arc(column, y, 10, 0, 2 * Math.PI, false);
+			ctx.arc(drawPos, y, 8, 0, 2 * Math.PI, false);
 			ctx.fillStyle = 'black';
 			ctx.fill();
 			ctx.closePath();
-	        // ctx.fillRect(column, y 1, y2);
-	        column += 1;
+	        drawPos += 1;
 	 	};
 
-        if(column >= canvasWidth) {
-            column = 10;
+        if(drawPos >= canvasWidth) {
+            drawPos = startPos;
+            count = 0;
             clearCanvas();
         };
 		
