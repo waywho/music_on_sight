@@ -141,6 +141,8 @@ $(document).ready(function() {
 			window.cancelAnimationFrame = window.webkitCancelAnimationFrame;
         window.cancelAnimationFrame( rafID );
     } 
+    	var testN = $('.testNotes').text();
+    	parseTest(testN);
 		evalNotes();
 	// function() {
 	// 	// oscillator1.disconnect();

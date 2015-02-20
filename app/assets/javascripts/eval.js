@@ -38,4 +38,22 @@ function evalNotes() {
 	};
 };
 
-//push the score up - button? call every 10 frame?
+
+// to do: push the score up - button? call every 10 frame?
+
+// to do: function to parse test example
+function parseTest (testN) {
+	var testN2 = testN.replace(/\/4/g, '');
+	console.log(testN2);
+	var testArr2 = testN2.split(/ \| | |-/);
+	console.log(testArr2);
+	$.each(testArr2, function(index, value) {
+		// go through each item and create note and notes value pairs in an array
+
+		}
+	});
+
+};
+
+
+// to do: chnage expectedList timing increments into note values
