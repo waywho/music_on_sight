@@ -6,7 +6,7 @@
 	var metro;
 	var expectedList = [];
 	var noteTime;
-	var example = ["C", "C", "G", "G", "A", "A", "G"]
+	var example = ["C", "C", "G", "G", "A", "A", "G"];
 
 	var noteLength = 0.05;
     var ctx2;
@@ -89,6 +89,7 @@
 
 $(document).ready(function() {
 	var wipe;
+
 	ctx2 = $('#canvas2')[0].getContext('2d');
 	drawTempoDot(startPos);
 
@@ -108,17 +109,20 @@ $(document).ready(function() {
 		blink = setTimeout(drawCountOff, tempoTime/2);
 		metro = setInterval(drawTime, tempoTime);
 		
+		//parsing the challenge test
+		var testN = $('.testNotes').text();
+    	parseTest(testN);
 
 
 		//setting up 5 counts and the expected time of the exercise notes
-			for(i=0; i<3+example.length+1; i++) {
+			for(i=0; i<3+testList.length+1; i++) {
 				if(i <= 3) {
 				tick(noteTime);
 				expectedList.push(["prep", noteTime]);
 				noteTime += secondsPerBeat;
 				} else {
-				expectedList.push([example[i-4], noteTime]);
-				noteTime += secondsPerBeat;
+				expectedList.push([testList[i-4][0], noteTime]);
+				noteTime += secondsPerBeat * testList[i-4][1];
 				};
 			};
 		} else { alert("Please turn on your microphone.");
@@ -148,8 +152,6 @@ $(document).ready(function() {
 			window.cancelAnimationFrame = window.webkitCancelAnimationFrame;
         window.cancelAnimationFrame( rafID );
     } 
-    	var testN = $('.testNotes').text();
-    	parseTest(testN);
 		evalNotes();
 	// function() {
 	// 	// oscillator1.disconnect();
