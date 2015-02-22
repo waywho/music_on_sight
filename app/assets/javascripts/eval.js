@@ -42,15 +42,17 @@ function evalNotes() {
 // to do: push the score up - button? call every 10 frame?
 
 // to do: function to parse test example
+var noteValueSet = [:w, :h, :q, :8, :16, :32, :64, :hd, :qd, :8d, :16d, :32d, :64d]
+
 function parseTest (testN) {
-	var testN2 = testN.replace(/\/4/g, '');
+	var testN2 = testN.replace(/\/\d4/g, '');
 	console.log(testN2);
 	var testArr2 = testN2.split(/ \| | |-/);
 	console.log(testArr2);
 	$.each(testArr2, function(index, value) {
 		// go through each item and create note and notes value pairs in an array
-
-		}
+		$.inArray(value, noteValueSet);
+		
 	});
 
 };

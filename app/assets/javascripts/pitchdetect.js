@@ -424,7 +424,7 @@ function updatePitch( time ) {
 
         if(drawPos >= canvasWidth) {
             drawPos = startPos;
-            count = 0;
+            count2 = 0;
             clearCanvas();
         };
 		
