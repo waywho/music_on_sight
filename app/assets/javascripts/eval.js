@@ -10,6 +10,7 @@
 
 function evalNotes() {
 	var score = 0; //maybe hash? so each note's given score.
+	var missedNotes = [];
 	for(i=1; i<expectedList.length-4; i++) {
 	var ranger = secondsPerBeat * 0.5; //tolerance range
 	var upperTime = expectedList[i+4][1] + ranger;
@@ -28,13 +29,24 @@ function evalNotes() {
 		};
 		if(hitNote==false) {
 			console.log("Missed note:" + i); //make the missed note red show the missed notes
-			$('#eval').append("Missed note: "+ i + " ");
+			missedNotes.push(i)
 		};
 	};
 	console.log(score);
-	$('#score').append(" " + score);
-	if($.trim($('#eval').text()) != "") {
-		$('#eval').addClass("alert alert-info");
+	var marks = score/ (expectedList.length - 4);
+	var fullscore = expectedList.length;
+	$('.score').append(" " + score + " out of " + fullscore);
+	if(marks<=0.5) {
+		$('.eval').append("You might need some practice. You missed notes: " + missedNotes + ".");
+	} else if(marks<=0.7) {
+		$('.eval').append("Getting there! You missed notes: " + missedNotes + ".");
+	} else if(marks<=0.8) {
+		$('.eval').append("Not bad! You only missed notes: " + missedNotes + ".");
+	} else if(marks<=0.9) {
+		$('.eval').append("Wow! You only missed note: " + missedNotes + ".");
+	} else {$('.eval').append("You are just perfect!")};
+	if($.trim($('.eval').text()) != "") {
+		$('.eval').addClass("alert alert-info");
 	};
 };
 
