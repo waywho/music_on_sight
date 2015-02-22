@@ -7,7 +7,7 @@
 		    options player=true tempo = 60 instrument=acoustic_grand_piano
 		    tabstave notation=true tablature=false
 		    time=4/4 
-		    notes :q C-C-G-G/4 | A-A/4 :h G/4
+		    notes :q C-C-G-G/4|A-A/4 :h G/4
 
 		      options space=25
 
@@ -18,14 +18,15 @@
 			<% @sightreading.notes.each do |note| %>
 		[<%= note.note_name %>, <%= note.midi_num %>, <%= note.duration %>]
 		<% end %></p>
+		<div class = 'testNotes'>:q C-C-G-G/4 | A-A/4 :h G/4</div>
 	</div>
 	<br class='clr' />
 
 	<div class = 'result col-xs-12 col-md-8'>
 		<div class = 'result-head col-xs-12 col-md-3'><h4>How did you do?</h4></div>
-			<div id='eval' class = 'col-xs-12 col-md-6'></div>
+			<div class ='eval col-xs-12 col-md-5'></div>
 		<div class = 'result-head col-xs-12 col-md-1'><h4>Score:</h4></div>
-			<div id='score' class = 'col-xs-12 col-md-2'></div>
+			<div class ='score col-xs-12 col-md-2 text-center'></div>
 	</div>
 
 	<br class = 'clr' />

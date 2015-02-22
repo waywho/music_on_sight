@@ -6,7 +6,7 @@
 	var metro;
 	var expectedList = [];
 	var noteTime;
-	var example = ["C", "C", "G", "G", "A", "A", "G"]
+	var example = ["C", "C", "G", "G", "A", "A", "G"];
 
 	var noteLength = 0.05;
     var ctx2;
@@ -14,21 +14,32 @@
     var DotOn = false;
     var blink;
     var	count = 0;
+    var count2 = 0;
     var startPos = 75;
 
 	function drawTime() {
 		// var lineTime = new Date();
 		// var msec = lineTime.getMilliseconds();
-		if(drawPos >= canvasWidth) {
+
+		if(count2 >= 9) {
+			clearCanvas();
             drawPos = startPos;
-            count = 0;
-            clearCanvas();
+            count2 = 0;
         }
-		metro = setInterval(function(){
-			count += 1;
-			drawPos= 75 * count;
+
+        if(count<4) {
+        	drawTempoDot(startPos);
+        } else {
+        	// metro = setInterval(function(){
+        	clearTimeout(blink);
+        	clearInterval(wipe);
+        	count2 += 1
+			drawPos= 75 * count2;
 			drawTempoDot(drawPos);
-			}, tempoTime);
+			// }, tempoTime);
+        };
+        count += 1;
+
 		};
 
 	function drawTempoDot(xtime) {
@@ -41,22 +52,15 @@
 		// ctx2.fill();
 		ctx2.stroke();
 		ctx2.closePath();
+		DotOn = true;
 
 	};
 	
-	function drawCountInDot() {
-			if(DotOn==false) {
-				ctx2.clearRect(0,0, 50, 50);
-				ctx2.beginPath();
-				ctx2.arc(25, 25, 10, 0, 2 * Math.PI, false);
-				ctx2.fillStyle = 'red';
-				ctx2.fill();
-				ctx2.closePath();
-				DotOn = true;
-			} else {
-				ctx2.clearRect(0,0, 50, 50);
-				DotOn = false;
-			};
+	function drawCountOff() {
+		wipe = setInterval(function (){
+			ctx2.clearRect(0,0, canvasWidth, canvasHeight);
+			DotOn = false;
+		}, tempoTime);
 	};
 
 
@@ -84,6 +88,8 @@
 
 
 $(document).ready(function() {
+	var wipe;
+
 	ctx2 = $('#canvas2')[0].getContext('2d');
 	drawTempoDot(startPos);
 
@@ -99,19 +105,24 @@ $(document).ready(function() {
 
 		setTimeout(updatePitch, tempoTime*5); //start after 5 counts
 		// blink = setInterval(drawCountInDot, tempoTime/2);
-		setTimeout(drawTime, tempoTime*4);
+		// setTimeout(drawTime, tempoTime*4);
+		blink = setTimeout(drawCountOff, tempoTime/2);
+		metro = setInterval(drawTime, tempoTime);
 		
+		//parsing the challenge test
+		var testN = $('.testNotes').text();
+    	parseTest(testN);
 
 
 		//setting up 5 counts and the expected time of the exercise notes
-			for(i=0; i<3+example.length+1; i++) {
+			for(i=0; i<3+testList.length+1; i++) {
 				if(i <= 3) {
 				tick(noteTime);
 				expectedList.push(["prep", noteTime]);
 				noteTime += secondsPerBeat;
 				} else {
-				expectedList.push([example[i-4], noteTime]);
-				noteTime += secondsPerBeat;
+				expectedList.push([testList[i-4][0], noteTime]);
+				noteTime += secondsPerBeat * testList[i-4][1];
 				};
 			};
 		} else { alert("Please turn on your microphone.");
