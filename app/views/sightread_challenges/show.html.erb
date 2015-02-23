@@ -6,17 +6,17 @@
 			
 		      options space=20
 
-		    options player=true tempo = 60 instrument=acoustic_grand_piano
+		    options player=true tempo=<%= @sightreading.tempo %> instrument=acoustic_grand_piano
 		    tabstave notation=true tablature=false
-		    time=4/4 
-		    notes :q C-C-G-G/4|A-A/4 :h G/4
+		    time=<%= @sightreading.time %> 
+		    notes <%= @sightreading.notes %>
 
 		      options space=25
 
 		    </div>
 	
 	<div class = 'col-xs-12 col-md-12'>
-		<div class = 'testNotes'>:q C-C-G-G/4 | A-A/4 :h G/4</div>
+		<div class = 'testNotes'><%= @sightreading.notes %></div>
 	</div>
 	<br class='clr' />
 
