@@ -4,7 +4,7 @@ class SightreadChallengesController < ApplicationController
 	end
 
 	def show
-		@sightreading = SightreadChallenge.find(params[:id])
+		@sightreading = SightreadChallenge.find(params[:id])s
 	end
 
 	def update
