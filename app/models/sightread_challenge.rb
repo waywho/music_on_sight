@@ -1,5 +1,5 @@
 class SightreadChallenge < ActiveRecord::Base
-
+	belongs_to :user
 
 	# def eval_notes
 	# 	sound = AubioWraper.new
