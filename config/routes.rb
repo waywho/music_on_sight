@@ -5,7 +5,7 @@ MusicOnSight::Application.routes.draw do
   resources :sightread_challenges, :only => [:index, :show]
 
   namespace :instructor do
-    resources :sightread_challenges, :only => [:new, :create, :show, :update]
+    resources :sightread_challenges
   end
 
 

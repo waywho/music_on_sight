@@ -3,6 +3,9 @@ class Instructor::SightreadChallengesController < ApplicationController
 		@sightread = SightreadChallenge.new
 	end
 
+	def show
+	end
+
 	def create
 		@sightread = SightreadChallenge.create(challenge_params)
 		redirect_to sightread_challenges_path
