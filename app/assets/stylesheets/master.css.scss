@@ -81,12 +81,13 @@ hr {
 
 .side-panel {
 	min-height: 250px;
-	padding: 0px;
+	padding: auto;
 }
 
 .controls {
-	margin: 0px 5px 5px 5px;
-	padding: 0px;
+	margin: 5px 5px 5px 5px;
+	min-height: 150px;
+	padding: auto;
 }
 
 .detec-div {
@@ -122,4 +123,11 @@ hr {
 button {
 	margin-top: 5px;
 	margin-bottom: 5px;
+}
+
+.total-score {
+	min-height: 175px;
+	background-color: #FFB43B;
+	margin: auto; 
+	padding: auto;
 }

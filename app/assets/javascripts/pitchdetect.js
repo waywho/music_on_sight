@@ -64,7 +64,7 @@ window.onload = function() {
 	// request.send();
 	lowfilter = audioContext.createBiquadFilter();
 
-	ctx = document.getElementById("canvas").getContext("2d");
+	ctx = $("#canvas")[0].getContext("2d");
 
 	drawStaff();
 	// drawTempoLine();
@@ -448,6 +448,6 @@ function updatePitch( time ) {
 
   function clearCanvas() {
         ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-        		ctx.beginPath();
+        ctx.beginPath();
         drawStaff();
     }
