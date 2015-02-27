@@ -1,5 +1,6 @@
 class SightreadChallenge < ActiveRecord::Base
-	has_many :notes
+	belongs_to :user
+	has_many :scores
 
 	# def eval_notes
 	# 	sound = AubioWraper.new

@@ -1,46 +1,59 @@
 <div class = 'booyah-box col-xs-10 col-xs-offset-1'>
 	<h1><%= @sightreading.title %></h1>
+	<div class = 'col-xs-8 col-md-8'>
+	<p>tempo= <%= @sightreading.tempo %> <%= @sightreading.time %>, <%= @sightreading.key %></p>
 			<div class="vex-tabdiv"  width=680 scale=1.0>
 			
 		      options space=20
 
-		    options player=true tempo = 60 instrument=acoustic_grand_piano
+		    options player=true tempo=<%= @sightreading.tempo %> instrument=acoustic_grand_piano
 		    tabstave notation=true tablature=false
-		    time=4/4 
-		    notes :q C-C-G-G/4|A-A/4 :h G/4
+		    time=<%= @sightreading.time %> 
+		    notes <%= @sightreading.notes %>
 
 		      options space=25
 
 		    </div>
-	
-	<div class = 'col-xs-12 col-md-12'>
-		<p>tempo = <%= @sightreading.tempo %> <%= @sightreading.time_sig %>, <%= @sightreading.key_sig %>
-			<% @sightreading.notes.each do |note| %>
-		[<%= note.note_name %>, <%= note.midi_num %>, <%= note.duration %>]
-		<% end %></p>
-		<div class = 'testNotes'>:q C-C-G-G/4 | A-A/4 :h G/4</div>
+	</div>
+	<div class = 'total-score col-xs-4 col-md-4 text-center'>
+		<p><h3>Your Sightreading Score:</h3></p>
+		<br />
+		<br />
+		<h4><%= @scores %></h4>
+	</div>
+<!-- 		<div class = 'col-xs-12 col-md-12'>
+			<%= simple_form_for Score.new, :url => sightread_challenge_add_score_path(@sightreading) do |f| %>
+			<%= f.input 'total' %>
+			<%= f.submit 'submit' %>
+			<% end %>
+		</div> -->
+
+	<div class = 'col-xs-8 col-md-8'>
+		<div class = 'testNotes'><%= @sightreading.notes %></div>
+		<%= link_to 'Edit', edit_instructor_sightread_challenge_path(@sightreading), :class => 'btn btn-success pull-right' %>
 	</div>
 	<br class='clr' />
+	<br />
 
-	<div class = 'result col-xs-12 col-md-8'>
+	<div class = 'result col-xs-12 col-md-9'>
 		<div class = 'result-head col-xs-12 col-md-3'><h4>How did you do?</h4></div>
 			<div class ='eval col-xs-8 col-md-5'></div>
 		<div class = 'result-head col-xs-12 col-md-1'><h4>Score:</h4></div>
-			<div class ='score col-xs-8 col-md-2 text-center'></div>
+			<div class ='score col-xs-8 col-md-3 text-center' data-post-url="<%= sightread_challenge_add_score_path(@sightreading)%>"></div>
 	</div>
 
 	<br class = 'clr' />
 	<br />
 
 	<div class = 'singpanel-div col-xs-12 col-md-12'>
-		<div class = 'music-panel col-xs-12 col-md-8'>
+		<div class = 'music-panel col-xs-12 col-md-9'>
 			<img id = 'treble' src = '/assets/treble.png'>
 			<canvas id="canvas2" height="250" width="685"></canvas>
 			<canvas id="canvas" height="250" width="685" ></canvas>
 		</div>
 
-		<div class = 'side-panel col-xs-12 col-md-2'>
-			<div class = 'detect-div col-xs-6 col-sm-3 col-md-12'>
+		<div class = 'side-panel col-xs-12 col-md-3'>
+			<div class = 'detect-div col-xs-4 col-sm-3 col-md-12'>
 				<div id='detector' class='vague'>
 					<div class="pitch"><span id="pitch">--</span>Hz</div>
 					<div class="note"><span id="note">--</span></div>   
@@ -48,12 +61,12 @@
 					<div id="detune"><span id="detune_amt">--</span><span id="flat">cents &#9837;</span><span id="sharp">cents &#9839;</span></div>
 				</div>
 			</div>
-			<div class = 'col-xs-6 col-sm-4 col-md-12'>
-				<div class = 'controls col-xs-12 col-sm-4 col-md-12'>
+			<div class = 'controls col-xs-4 col-sm-4 col-md-12'>
+				<div class = 'col-xs-12 col-sm-4 col-md-12'>
 					<button onclick="toggleLiveInput()" id= 'mic' class = 'btn btn-success'><!-- use live input --></button>
 				</div>
 
-		 		<div class = 'controls col-xs-12 col-sm-4 col-md-12'>
+		 		<div class = 'col-xs-12 col-sm-4 col-md-12'>
 		 			<button id= 'metronome' class ='metronome btn btn-success'>Start</button>
 		 		<br />
 		 			<button id= 'stop' class ='metronome btn btn-success'>Stop</button>

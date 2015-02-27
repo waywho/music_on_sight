@@ -33,8 +33,12 @@ function evalNotes() {
 		};
 	};
 	console.log(score);
+	
+	// $.post('/sightread_challenge/1/add_score', {score: {total: score}}).success(function(data) {console.log(data);});
+	$.post($('.score').data('post-url'), {score: {total: score}}).success(function(data) {console.log(data);});
+
 	var marks = score/ (expectedList.length - 4);
-	var fullscore = expectedList.length;
+	var fullscore = (expectedList.length - 4);
 	$('.score').append(" " + score + " out of " + fullscore);
 	if(marks<=0.5) {
 		$('.eval').append("You might need some practice. You missed notes: " + missedNotes + ".");
@@ -53,13 +57,12 @@ function evalNotes() {
 
 // to do: push the score up - button? call every 10 frame?
 
-// to do: function to parse test example
 var noteValueSet = {':w': 4, ':h': 2, ':q': 1, ':8': 0.5, ':16': 0.25, ':32': 0.125, ':64': 0.0625, 
 	':hd': 3, ':qd': 1.5, ':8d': 0.75, ':16d': 0.375, ':32d': 0.1875, ':64d': 0.09375}
-
 var testList = [];
 
 function parseTest (testN) {
+
 	var testN2 = testN.replace(/\/\d/g, '');
 	console.log(testN2);
 	var testArr2 = testN2.split(/ \| | |-/);
@@ -74,6 +77,7 @@ function parseTest (testN) {
 		testList.push([value, duration]);
 	});
 	console.log(testList);
+	return testList;
 };
 
 

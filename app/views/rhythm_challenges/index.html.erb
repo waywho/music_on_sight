@@ -1,0 +1,5 @@
+<h1>Rhythm Exercises</h1>
+
+<% @rhythms.each do |rhythm| %>
+	<%= link_to rhythm.title, rhythm_challenge_path(rhythm) %>
+	<% end %>

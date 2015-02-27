@@ -14,6 +14,7 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require vextab-div
+//= require rhythm_count
 //= require pitchdetect
 //= require metronome
 //= require eval

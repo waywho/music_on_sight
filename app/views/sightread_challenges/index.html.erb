@@ -1,11 +1,11 @@
-<div class = "booyah-box col-xs-10 col-xs-offset-1">
+<div class = "col-xs-10 col-xs-offset-1">
 	<br />
 	<h1>Welcome to Your Sight Reading Challenges</h1>
 
 	<br />
 	<% @sightreadings.each do |sightreading| %>
-		<p><h2><%= link_to sightreading.title, sightread_challenge_path(sightreading) %></h2></p>
-		<p><%= sightreading.tempo %>, <%= sightreading.time_sig %>, <%= sightreading.key_sig %></p>
+		<p><h3><%= link_to sightreading.title, sightread_challenge_path(sightreading) %></h3></p>
+		<p><%= sightreading.tempo %>, <%= sightreading.time %>, <%= sightreading.key %></p>
 		<% end %>
 	<hr />
 
