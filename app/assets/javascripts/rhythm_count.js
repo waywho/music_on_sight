@@ -14,7 +14,7 @@ var context = new AudioContext() || new webkitAudioContext(); //create the audio
 	var	tempo = 60;
 	var tempoTime = 60000/tempo;
 	var secondsPerBeat = 60.0/tempo;
-	var speed = 75.5/secondsPerBeat;
+	var speed = 76/secondsPerBeat;
 	var metro;
 	var then;
 	var now;
@@ -136,7 +136,6 @@ $(document).ready(function() {
 
 		blink = setTimeout(drawCountOff2, tempoTime/2);
 		metro = setInterval(drawTime2, tempoTime);
-
 
 		//setting up 5 counts and the expected time of the exercise notes
 			for(i=0; i<12; i++) {
