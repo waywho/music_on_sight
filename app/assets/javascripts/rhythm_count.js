@@ -1,10 +1,11 @@
  window.requestAnimFrame = (function(){
-      return  window.requestAnimationFrame       ||
+      return  (window.requestAnimationFrame       ||
               window.webkitRequestAnimationFrame ||
               window.mozRequestAnimationFrame    ||
               function(callback, element){
                 window.setTimeout(callback, 1000 / 60);
-              };
+              	}
+              );
     })();
 
 
@@ -13,16 +14,26 @@ var context = new AudioContext() || new webkitAudioContext(); //create the audio
 	var	tempo = 60;
 	var tempoTime = 60000/tempo;
 	var secondsPerBeat = 60.0/tempo;
+	var speed = 75.5/secondsPerBeat;
 	var metro;
+	var then;
+	var now;
+	var delta;
 
 	var noteLength = 0.05;
     var ctx3;
+    var drawDis = 0;
     var drawPos = 0;
     var DotOn = false;
     var blink;
-    var speed = 0;
 
     var isPlaying = false;
+
+    function setDelta() {
+    now = Date.now();
+    delta = (now - then) / 1000; // seconds since last frame
+    then = now;
+  	};
 
 	function drawTime2() {
 		// var lineTime = new Date();
@@ -33,8 +44,8 @@ var context = new AudioContext() || new webkitAudioContext(); //create the audio
             count2 = 0;
         }
 
-        if(count<4) {
-        	drawTempoLine(20, 0);
+        if(count2<3) {
+        	drawStaticTempoLine();
         } else {
         	// metro = setInterval(function(){
         	clearTimeout(blink);
@@ -44,30 +55,42 @@ var context = new AudioContext() || new webkitAudioContext(); //create the audio
 			// drawPos= 75 * count2;
 			// drawTempoLine(drawPos);
 			// }, tempoTime);
+ 			then = Date.now();
  			window.requestAnimFrame(drawTempoLine);
         };
-        count += 1;
-
+        count2 += 1;
 		};
 
-	function drawTempoLine() {
+	function drawStaticTempoLine() {
 		ctx3.clearRect(0,0, 680, 145)
 		ctx3.beginPath();
-		ctx3.moveTo(20 + speed, 10);
-		ctx3.lineTo(20 + speed, 145)
+		ctx3.moveTo(0, 10);
+		ctx3.lineTo(0, 145)
 		// ctx2.arc(xtime, 25, 10, 0, 2 * Math.PI, false);
 		ctx3.fillStyle = '#009933';
 		// ctx2.fill();
 		ctx3.stroke();
 		ctx3.closePath();
-		speed += 1;
-		DotOn = true;
+	};
+
+	function drawTempoLine() {
+		ctx3.clearRect(0,0, 680, 145)
+		ctx3.beginPath();
+		ctx3.moveTo(drawPos + drawDis, 10);
+		ctx3.lineTo(drawPos + drawDis, 145)
+		// ctx2.arc(xtime, 25, 10, 0, 2 * Math.PI, false);
+		ctx3.fillStyle = '#009933';
+		// ctx2.fill();
+		ctx3.stroke();
+		ctx3.closePath();
+		setDelta();
+		drawDis += delta * speed;
+		window.requestAnimFrame(drawTempoLine);
 	};
 	
 	function drawCountOff2() {
 		wipe = setInterval(function (){
 			ctx3.clearRect(0,0, canvasWidth, canvasHeight);
-			DotOn = false;
 		}, tempoTime);
 	};
 
@@ -100,11 +123,10 @@ $(document).ready(function() {
 	var startPos2 = 20;
 	var	count = 0;
    	var count2 = 0;
-   	var speed = 0;
 
 
 	ctx3 = $('.rhythm-count')[0].getContext('2d');
-	drawTempoLine();
+	drawStaticTempoLine();
 
 	$('#metronome').click(function() {
      	ctx3.clearRect(0,0, 680, 145)
@@ -117,7 +139,7 @@ $(document).ready(function() {
 
 
 		//setting up 5 counts and the expected time of the exercise notes
-			for(i=0; i<4; i++) {
+			for(i=0; i<12; i++) {
 				tick(noteTime);
 				noteTime += secondsPerBeat;
 			};
