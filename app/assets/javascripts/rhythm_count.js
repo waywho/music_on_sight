@@ -9,18 +9,20 @@
     })();
 
 
-var context = new AudioContext() || new webkitAudioContext(); //create the audio container
+// var audioContext = new AudioContext() || new webkitAudioContext(); //create the audio container
 
 	var	tempo = 60;
 	var tempoTime = 60000/tempo;
 	var secondsPerBeat = 60.0/tempo;
 	var speed = 76/secondsPerBeat;
+	
 	var metro;
 	var then;
 	var now;
 	var delta;
 
 	var noteLength = 0.05;
+
     var ctx3;
     var drawDis = 0;
     var drawPos = 0;
@@ -39,11 +41,6 @@ var context = new AudioContext() || new webkitAudioContext(); //create the audio
 		// var lineTime = new Date();
 		// var msec = lineTime.getMilliseconds();
 
-		if(count2 >= 9) {
-            drawPos = 20;
-            count2 = 0;
-        }
-
         if(count2<3) {
         	drawStaticTempoLine();
         } else {
@@ -59,7 +56,7 @@ var context = new AudioContext() || new webkitAudioContext(); //create the audio
  			window.requestAnimFrame(drawTempoLine);
         };
         count2 += 1;
-		};
+	};
 
 	function drawStaticTempoLine() {
 		ctx3.clearRect(0,0, 680, 145)
@@ -101,20 +98,19 @@ var context = new AudioContext() || new webkitAudioContext(); //create the audio
 		// console.log(noteTime);
 		// expectedList.push(noteTime);
 
-		osc1 = context.createOscillator(); //create the sound source
+		osc1 = audioContext.createOscillator(); //create the sound source
 		osc1.type = "square"; //square wave;
 		osc1.frequency.value = 261.63;
 
-		gainNode = context.createGain(); //create a gain note
+		gainNode = audioContext.createGain(); //create a gain note
 		gainNode.gain.value = 0.1; //set gain node to 30 percent volume
 
 		osc1.connect(gainNode); //connect sound to gain node
 		
-		gainNode.connect(context.destination); //gain connect to speaker
+		gainNode.connect(audioContext.destination); //gain connect to speaker
 
 		osc1.start(time); //generate sound instantly
 		osc1.stop(time + noteLength);
-
 	};
 
 
@@ -130,7 +126,7 @@ $(document).ready(function() {
 
 	$('#metronome').click(function() {
      	ctx3.clearRect(0,0, 680, 145)
-     	noteTime = context.currentTime + secondsPerBeat;
+     	noteTime = audioContext.currentTime + secondsPerBeat;
      	// $('#eval').html("").removeClass("alert alert-info");
      	// $('#score').html("");
 
@@ -156,7 +152,7 @@ $(document).ready(function() {
         // clearCanvas();
 		if (!window.cancelAnimationFrame)
 			window.cancelAnimationFrame = window.webkitCancelAnimationFrame;
-        window.cancelAnimationFrame( rafID );
-    } 
+        window.cancelAnimationFrame( drawTempoLine );
+    	} 
 	});
 })

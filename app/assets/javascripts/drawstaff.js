@@ -1,7 +1,6 @@
 // Global Variables for Drawing staff canvas for singing
 var canvasWidth  = 685;
 var canvasHeight = 250;
-var ctx;
 
 // draw the staff on canvas
 

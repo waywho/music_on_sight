@@ -44,6 +44,7 @@ var mediaStreamSource = null;
 var detectorElem, 
 	canvasElem,
 	// waveCanvas,
+	ctx,
 	pitchElem,
 	noteElem,
 	detuneElem,
