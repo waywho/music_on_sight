@@ -156,9 +156,12 @@ $(document).ready(function() {
 		osc2.stop(time + noteLength);
 		};
 
-	ctx3 = $('.rhythm-count')[0].getContext('2d');
-	vex = $('.vex-canvas')[0].getContext('2d');
-	drawStaticTempoLine();
+	var $rhythmCount = $('.rhythm-count');
+	if($rhythmCount.length>0) {
+		ctx3 = $('.rhythm-count')[0].getContext('2d');
+		vex = $('.vex-canvas')[0].getContext('2d');
+		drawStaticTempoLine();	
+
 
 	var testN = $('.testNotes').text();
 	parseTest(testN);
@@ -216,4 +219,5 @@ $(document).ready(function() {
 
 		drawTempoLine2();
 	});
+	}
 })

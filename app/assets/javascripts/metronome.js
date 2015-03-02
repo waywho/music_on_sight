@@ -11,39 +11,10 @@
     var	count = 0;
     var count2 = 0;
     var startPos = 75;
-
-$(window).ready(function() {
-	// var context = new AudioContext() || new webkitAudioContext(); //create the audio container
-	var wipe;
-	var ctx2;
-
-	// tempo = parseInt($('#tempo').text(), 10);
- //   	console.log(tempo);
-	window.tempoTime = 60000/tempo;
-	window.secondsPerBeat = 60.0/tempo;
+    var ctx2;
 
 
-    function drawTime() {
-		// var lineTime = new Date();
-		// var msec = lineTime.getMilliseconds();
-		if(count2 >= 9) {
-			clearCanvas();
-            drawPos = startPos;
-            count2 = 0;
-        }
-        if(count<4) {
-        	drawTempoDot(startPos);
-        } else {
-        	// metro = setInterval(function(){
-        	clearTimeout(blink);
-        	clearInterval(wipe);
-        	count2 += 1
-			drawPos= 75 * count2;
-			drawTempoDot(drawPos);
-			// }, tempoTime);
-        };
-        count += 1;
-		};
+	
     
 	function drawTempoDot(xtime) {
 		ctx2.clearRect(0,0, canvasWidth, canvasHeight);
@@ -82,9 +53,41 @@ $(window).ready(function() {
 		osc1.stop(time + noteLength);
 	};
 
+$(window).ready(function() {
+	// var context = new AudioContext() || new webkitAudioContext(); //create the audio container
+	var wipe;
 
+
+
+	// tempo = parseInt($('#tempo').text(), 10);
+ //   	console.log(tempo);
+	window.tempoTime = 60000/tempo;
+	window.secondsPerBeat = 60.0/tempo;
+
+	function drawTime() {
+		// var lineTime = new Date();
+		// var msec = lineTime.getMilliseconds();
+		if(count2 >= 9) {
+			clearCanvas();
+            drawPos = startPos;
+            count2 = 0;
+        }
+        if(count<4) {
+        	drawTempoDot(startPos);
+        } else {
+        	// metro = setInterval(function(){
+        	clearTimeout(blink);
+        	clearInterval(wipe);
+        	count2 += 1
+			drawPos= 75 * count2;
+			drawTempoDot(drawPos);
+			// }, tempoTime);
+        };
+        count += 1;
+		};
 
     ctx2 = $('#canvas2')[0].getContext('2d');
+    console.log(ctx2);
 	drawTempoDot(startPos);
 
 	$('#metronome').click(function() {
