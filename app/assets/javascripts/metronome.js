@@ -9,7 +9,7 @@
     var DotOn = false;
     var blink;
     var	count = 0;
-    var count2 = 0;
+    var tempoLinePosIncrement = 0;
     var startPos = 75;
     var ctx2;
 
@@ -56,7 +56,9 @@
 $(window).ready(function() {
 	// var context = new AudioContext() || new webkitAudioContext(); //create the audio container
 	var wipe;
-
+	window.clearTempoLinePosIncrement = function () {
+		tempoLinePosIncrement = 0;
+	}
 
 
 	// tempo = parseInt($('#tempo').text(), 10);
@@ -67,10 +69,10 @@ $(window).ready(function() {
 	function drawTime() {
 		// var lineTime = new Date();
 		// var msec = lineTime.getMilliseconds();
-		if(count2 >= 9) {
+		if(tempoLinePosIncrement >= 9) {
 			clearCanvas();
             drawPos = startPos;
-            count2 = 0;
+			window.clearTempoLinePosIncrement();
         }
         if(count<4) {
         	drawTempoDot(startPos);
@@ -78,8 +80,8 @@ $(window).ready(function() {
         	// metro = setInterval(function(){
         	clearTimeout(blink);
         	clearInterval(wipe);
-        	count2 += 1
-			drawPos= 75 * count2;
+        	tempoLinePosIncrement += 1
+			drawPos= 75 * tempoLinePosIncrement;
 			drawTempoDot(drawPos);
 			// }, tempoTime);
         };
