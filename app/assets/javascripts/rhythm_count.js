@@ -10,11 +10,6 @@
 
 
 // var audioContext = new AudioContext() || new webkitAudioContext(); //create the audio container
-
-	var	tempo = 60;
-	var tempoTime = 60000/tempo;
-	var secondsPerBeat = 60.0/tempo;
-	var speed = 76/secondsPerBeat;
 	
 	var metro;
 	var then;
@@ -23,7 +18,7 @@
 
 	var noteLength = 0.05;
 
-    var ctx3;
+    window.ctx3;
     var drawDis = 0;
     var drawPos = 0;
     var DotOn = false;
@@ -119,6 +114,11 @@ $(document).ready(function() {
 	var startPos2 = 20;
 	var	count = 0;
    	var count2 = 0;
+
+   	window.tempo = 60;
+	window.tempoTime = 60000/tempo;
+	window.secondsPerBeat = 60.0/tempo;
+	window.speed = 76/secondsPerBeat;
 
 
 	ctx3 = $('.rhythm-count')[0].getContext('2d');

@@ -1,7 +1,4 @@
-	var ctx2;
-	var	tempo = 60;
-	var tempoTime = 60000/tempo;
-	var secondsPerBeat = 60.0/tempo;
+
 	var metro;
 	var expectedList = [];
 	var noteTime;
@@ -14,6 +11,17 @@
     var	count = 0;
     var count2 = 0;
     var startPos = 75;
+
+
+
+$(window).load(function() {
+	// var context = new AudioContext() || new webkitAudioContext(); //create the audio container
+	var wipe;
+	var ctx2;
+
+	window.tempo = 40;
+	window.tempoTime = 60000/tempo;
+	window.secondsPerBeat = 60.0/tempo;
 
 
     function drawTime() {
@@ -75,14 +83,11 @@
 		osc1.stop(time + noteLength);
 	};
 
-$(window).load(function() {
-	// var context = new AudioContext() || new webkitAudioContext(); //create the audio container
-	var wipe;
+
+
 
     ctx2 = $('#canvas2')[0].getContext('2d');
 	drawTempoDot(startPos);
-
-
 
 	$('#metronome').click(function() {
      	clearCanvas();
