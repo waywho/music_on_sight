@@ -12,14 +12,13 @@
     var count2 = 0;
     var startPos = 75;
 
-
-
-$(window).load(function() {
+$(window).ready(function() {
 	// var context = new AudioContext() || new webkitAudioContext(); //create the audio container
 	var wipe;
 	var ctx2;
 
-	window.tempo = 40;
+	// tempo = parseInt($('#tempo').text(), 10);
+ //   	console.log(tempo);
 	window.tempoTime = 60000/tempo;
 	window.secondsPerBeat = 60.0/tempo;
 
@@ -85,7 +84,6 @@ $(window).load(function() {
 
 
 
-
     ctx2 = $('#canvas2')[0].getContext('2d');
 	drawTempoDot(startPos);
 
@@ -110,10 +108,9 @@ $(window).load(function() {
 
 
 			//setting up 5 counts and the expected time of the exercise notes
-				for(i=0; i<3+testList.length+1; i++) {
+				for(i=0; i<4+testList.length; i++) {
 					if(i <= 3) {
 					tick(noteTime);
-					expectedList.push(["prep", noteTime]);
 					noteTime += secondsPerBeat;
 					} else {
 					expectedList.push([testList[i-4][0], noteTime]);
@@ -121,18 +118,7 @@ $(window).load(function() {
 					};
 				};
 		} else { alert("Please turn on your microphone.");
-	};
-
-
-		// clearInterval(metro);
-		// metro = setInterval(tick, tempoTime);
-
-		// setInterval(tick(noteTime), tempoTime);
-		// function beatSoundStart() {
-		
-		// oscillator1.stop();
-		// time = 60000 / tempo;
-		// setTimeout(beatSoundStart, time );
+		};
 	});
 	$('#stop').click(function() {
 		if(isPlaying) {
@@ -143,10 +129,7 @@ $(window).load(function() {
         analyser = null;
         isPlaying = false;
         // clearCanvas();
-		if (!window.cancelAnimationFrame)
-			window.cancelAnimationFrame = window.webkitCancelAnimationFrame;
-        window.cancelAnimationFrame( rafID );
-    } 
+    	};
 		evalNotes();
 	// function() {
 	// 	// oscillator1.disconnect();
