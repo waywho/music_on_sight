@@ -5,17 +5,15 @@
 
 	var noteLength = 0.05;
 
-    var drawPos = 0;
+    var tempoLineDrawPos = 0;
     var DotOn = false;
     var blink;
-    var	count = 0;
-    var tempoLinePosIncrement = 0;
+
+
     var startPos = 75;
     var ctx2;
 
 
-	
-    
 	function drawTempoDot(xtime) {
 		ctx2.clearRect(0,0, canvasWidth, canvasHeight);
 		ctx2.beginPath();
@@ -56,8 +54,14 @@
 $(window).ready(function() {
 	// var context = new AudioContext() || new webkitAudioContext(); //create the audio container
 	var wipe;
+	var tempoLinePosIncrement = 0;
+	var	metronomeBeatCount = 0;
 	window.clearTempoLinePosIncrement = function () {
 		tempoLinePosIncrement = 0;
+	}
+
+	window.incrementDrawLinePosBy = function (amount) {
+		tempoLineDrawPos += amount;
 	}
 
 
@@ -71,21 +75,21 @@ $(window).ready(function() {
 		// var msec = lineTime.getMilliseconds();
 		if(tempoLinePosIncrement >= 9) {
 			clearCanvas();
-            drawPos = startPos;
+            tempoLineDrawPos = startPos;
 			window.clearTempoLinePosIncrement();
         }
-        if(count<4) {
+        if(metronomeBeatCount <4) {
         	drawTempoDot(startPos);
         } else {
         	// metro = setInterval(function(){
         	clearTimeout(blink);
         	clearInterval(wipe);
         	tempoLinePosIncrement += 1
-			drawPos= 75 * tempoLinePosIncrement;
-			drawTempoDot(drawPos);
+			tempoLineDrawPos= 75 * tempoLinePosIncrement;
+			drawTempoDot(tempoLineDrawPos);
 			// }, tempoTime);
         };
-        count += 1;
+        metronomeBeatCount += 1;
 		};
 
     ctx2 = $('#canvas2')[0].getContext('2d');
@@ -129,6 +133,7 @@ $(window).ready(function() {
 		if(isPlaying) {
         //stop playing and return
         clearInterval(metro);
+        window.cancelAnimationFrame(rafID);
         sourceNode.disconnect();
         sourceNode = null;
         analyser = null;

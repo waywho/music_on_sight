@@ -182,7 +182,6 @@ $(document).ready(function() {
 				noteTime2 += secondsPerBeat;
 			};
 
-
 			for(i=0; i<4+testList.length; i++) {
 				if(i <= 3) {
 				noteTime += secondsPerBeat;

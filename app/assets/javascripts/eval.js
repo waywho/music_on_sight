@@ -41,8 +41,8 @@ function evalNotes() {
 	// $.post('/sightread_challenge/1/add_score', {score: {total: score}}).success(function(data) {console.log(data);});
 	$.post($('.score').data('post-url'), {score: {total: score}}).success(function(data) {console.log(data);});
 
-	var marks = score/ (expectedList.length - 4);
-	var fullscore = (expectedList.length - 4);
+	var marks = score/expectedList.length;
+	var fullscore = expectedList.length;
 	$('.score').append(" " + score + " out of " + fullscore);
 	if(marks<=0.5) {
 		$('.eval').append("You might need some practice. You missed notes: " + missedNotes + ".");
