@@ -9,7 +9,6 @@
     var DotOn = false;
     var blink;
 
-
     var startPos = 75;
     var ctx2;
 

@@ -15,6 +15,7 @@ body {
   border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
   padding: 10px;
   min-height: 100%;
+  min-width: 680px;
 }
 
 .overlay {
@@ -126,8 +127,18 @@ button {
 }
 
 .total-score {
-	min-height: 175px;
+	min-height: 50px;
 	background-color: #FFB43B;
 	margin: auto; 
+	padding: auto;
+	z-index: 1;
+}
+
+.testNotes {
+	visibility: hidden;
+}
+
+.test-panel {
+	margin: auto;
 	padding: auto;
 }

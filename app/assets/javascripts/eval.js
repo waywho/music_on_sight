@@ -52,7 +52,9 @@ function evalNotes() {
 		$('.eval').append("Not bad! You only missed notes: " + missedNotes + ".");
 	} else if(marks<=0.9) {
 		$('.eval').append("Wow! You only missed note: " + missedNotes + ".");
-	} else {$('.eval').append("You are just perfect!")};
+	} else if(marks>0.9) {
+		$('.eval').append("You are just perfect!")
+	};
 	if($.trim($('.eval').text()) != "") {
 		$('.eval').addClass("alert alert-info");
 	};
