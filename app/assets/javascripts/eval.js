@@ -11,15 +11,19 @@
 function evalNotes() {
 	var score = 0; //maybe hash? so each note's given score.
 	var missedNotes = [];
-	for(i=1; i<expectedList.length-4; i++) {
+	for(i=0; i<expectedList.length; i++) {
 	var ranger = secondsPerBeat * 0.5; //tolerance range
-	var upperTime = expectedList[i+4][1] + ranger;
-	var lowerTime = expectedList[i+4][1] - ranger;
+	var upperTime = expectedList[i][1] + ranger;
+	var lowerTime = expectedList[i][1] - ranger;
 	var hitNote = false;
 
-		for(j=1; j<noteList.length; j++) {
+		for(j=0; j<noteList.length; j++) {
 			if(noteList[j][1] <= upperTime && noteList[j][1] >= lowerTime) {
-				if(noteList[j][0]==expectedList[i+4][0]){
+				if(expectedList[i][0] == '##') {
+					console.log('rest');
+					hitNote = true;
+					break;
+				} else if(noteList[j][0]==expectedList[i][0]){
 					console.log(noteList[j][1]);
 					score += 1;
 					hitNote = true;
@@ -28,8 +32,8 @@ function evalNotes() {
 			};
 		};
 		if(hitNote==false) {
-			console.log("Missed note:" + i); //make the missed note red show the missed notes
-			missedNotes.push(i)
+			console.log("Missed note:" + (i + 1)); //make the missed note red show the missed notes
+			missedNotes.push(i + 1)
 		};
 	};
 	console.log(score);
@@ -37,8 +41,8 @@ function evalNotes() {
 	// $.post('/sightread_challenge/1/add_score', {score: {total: score}}).success(function(data) {console.log(data);});
 	$.post($('.score').data('post-url'), {score: {total: score}}).success(function(data) {console.log(data);});
 
-	var marks = score/ (expectedList.length - 4);
-	var fullscore = (expectedList.length - 4);
+	var marks = score/expectedList.length;
+	var fullscore = expectedList.length;
 	$('.score').append(" " + score + " out of " + fullscore);
 	if(marks<=0.5) {
 		$('.eval').append("You might need some practice. You missed notes: " + missedNotes + ".");
@@ -63,7 +67,7 @@ var testList = [];
 
 function parseTest (testN) {
 
-	var testN2 = testN.replace(/\/\d/g, '');
+	var testN2 = testN.replace(/\/\d/g, '').replace(/[S]/g, '');
 	console.log(testN2);
 	var testArr2 = testN2.split(/ \| | |-/);
 	console.log(testArr2);
@@ -82,3 +86,6 @@ function parseTest (testN) {
 
 
 // to do: chnage expectedList timing increments into note values
+
+
+

@@ -416,16 +416,16 @@ function updatePitch( time ) {
 			noteList.push([noteStrings[note%12], audioContext.currentTime]);
 
 			ctx.beginPath();
-			ctx.arc(drawPos, y, 8, 0, 2 * Math.PI, false);
+			ctx.arc(tempoLineDrawPos, y, 8, 0, 2 * Math.PI, false);
 			ctx.fillStyle = 'black';
 			ctx.fill();
 			ctx.closePath();
-	        drawPos += 1;
+	        // tempoLineDrawPos += 1;
 	 	};
 
-        if(drawPos >= canvasWidth) {
-            drawPos = startPos;
-            count2 = 0;
+        if(tempoLineDrawPos >= canvasWidth) {
+            tempoLineDrawPos = startPos;
+            window.clearTempoLinePosIncrement();
             clearCanvas();
         };
 		

@@ -1,43 +1,19 @@
-	var ctx2;
-	var	tempo = 60;
-	var tempoTime = 60000/tempo;
-	var secondsPerBeat = 60.0/tempo;
+
 	var metro;
 	var expectedList = [];
 	var noteTime;
 
 	var noteLength = 0.05;
 
-    var drawPos = 0;
+    var tempoLineDrawPos = 0;
     var DotOn = false;
     var blink;
-    var	count = 0;
-    var count2 = 0;
+
+
     var startPos = 75;
+    var ctx2;
 
 
-    function drawTime() {
-		// var lineTime = new Date();
-		// var msec = lineTime.getMilliseconds();
-		if(count2 >= 9) {
-			clearCanvas();
-            drawPos = startPos;
-            count2 = 0;
-        }
-        if(count<4) {
-        	drawTempoDot(startPos);
-        } else {
-        	// metro = setInterval(function(){
-        	clearTimeout(blink);
-        	clearInterval(wipe);
-        	count2 += 1
-			drawPos= 75 * count2;
-			drawTempoDot(drawPos);
-			// }, tempoTime);
-        };
-        count += 1;
-		};
-    
 	function drawTempoDot(xtime) {
 		ctx2.clearRect(0,0, canvasWidth, canvasHeight);
 		ctx2.beginPath();
@@ -75,14 +51,50 @@
 		osc1.stop(time + noteLength);
 	};
 
-$(window).load(function() {
+$(window).ready(function() {
 	// var context = new AudioContext() || new webkitAudioContext(); //create the audio container
 	var wipe;
+	var tempoLinePosIncrement = 0;
+	var	metronomeBeatCount = 0;
+	window.clearTempoLinePosIncrement = function () {
+		tempoLinePosIncrement = 0;
+	}
+
+	window.incrementDrawLinePosBy = function (amount) {
+		tempoLineDrawPos += amount;
+	}
+
+
+	// tempo = parseInt($('#tempo').text(), 10);
+ //   	console.log(tempo);
+	window.tempoTime = 60000/tempo;
+	window.secondsPerBeat = 60.0/tempo;
+
+	function drawTime() {
+		// var lineTime = new Date();
+		// var msec = lineTime.getMilliseconds();
+		if(tempoLinePosIncrement >= 9) {
+			clearCanvas();
+            tempoLineDrawPos = startPos;
+			window.clearTempoLinePosIncrement();
+        }
+        if(metronomeBeatCount <4) {
+        	drawTempoDot(startPos);
+        } else {
+        	// metro = setInterval(function(){
+        	clearTimeout(blink);
+        	clearInterval(wipe);
+        	tempoLinePosIncrement += 1
+			tempoLineDrawPos= 75 * tempoLinePosIncrement;
+			drawTempoDot(tempoLineDrawPos);
+			// }, tempoTime);
+        };
+        metronomeBeatCount += 1;
+		};
 
     ctx2 = $('#canvas2')[0].getContext('2d');
+    console.log(ctx2);
 	drawTempoDot(startPos);
-
-
 
 	$('#metronome').click(function() {
      	clearCanvas();
@@ -105,10 +117,9 @@ $(window).load(function() {
 
 
 			//setting up 5 counts and the expected time of the exercise notes
-				for(i=0; i<3+testList.length+1; i++) {
+				for(i=0; i<4+testList.length; i++) {
 					if(i <= 3) {
 					tick(noteTime);
-					expectedList.push(["prep", noteTime]);
 					noteTime += secondsPerBeat;
 					} else {
 					expectedList.push([testList[i-4][0], noteTime]);
@@ -116,32 +127,19 @@ $(window).load(function() {
 					};
 				};
 		} else { alert("Please turn on your microphone.");
-	};
-
-
-		// clearInterval(metro);
-		// metro = setInterval(tick, tempoTime);
-
-		// setInterval(tick(noteTime), tempoTime);
-		// function beatSoundStart() {
-		
-		// oscillator1.stop();
-		// time = 60000 / tempo;
-		// setTimeout(beatSoundStart, time );
+		};
 	});
 	$('#stop').click(function() {
 		if(isPlaying) {
         //stop playing and return
         clearInterval(metro);
+        window.cancelAnimationFrame(rafID);
         sourceNode.disconnect();
         sourceNode = null;
         analyser = null;
         isPlaying = false;
         // clearCanvas();
-		if (!window.cancelAnimationFrame)
-			window.cancelAnimationFrame = window.webkitCancelAnimationFrame;
-        window.cancelAnimationFrame( rafID );
-    } 
+    	};
 		evalNotes();
 	// function() {
 	// 	// oscillator1.disconnect();
