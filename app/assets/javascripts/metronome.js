@@ -89,8 +89,9 @@ $(window).ready(function() {
         metronomeBeatCount += 1;
 		};
 
-	var $canvas2 = $('.canvas2');
-	if($canvas2.length>0) {
+		var $can2 = $('#canvas2')
+
+		if($can2.length>0) {
 	    ctx2 = $('#canvas2')[0].getContext('2d');
 	    console.log(ctx2);
 		drawTempoDot(startPos);
@@ -143,5 +144,5 @@ $(window).ready(function() {
 		// function() {
 		// 	// oscillator1.disconnect();
 		});
-	};
+	}
 })

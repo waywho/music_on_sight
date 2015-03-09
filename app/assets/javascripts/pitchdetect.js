@@ -83,7 +83,7 @@ window.onload = function() {
 		detuneElem = document.getElementById( "detune" );
 		detuneAmount = document.getElementById( "detune_amt" );
 
-		};
+	}
 
 	// detectorElem.ondragenter = function () { 
 	// 	this.classList.add("droptarget"); 
