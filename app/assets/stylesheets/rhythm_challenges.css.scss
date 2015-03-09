@@ -3,12 +3,12 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .rhythm-count {
-	position: absolute;
-    left: 10px;
-    top: 80px;
+	position: relative;
     display: block;
     min-height: 145px;
     z-index: 3;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .vex-canvas {
@@ -18,6 +18,11 @@
 }
 
 .rhythm {
-	margin-left: auto;
-	margin-right: auto;
+	position: absolute;
+	left: 10px;
+	top: 109px;
+	display: block;
+	min-height: 145px;
+	width: 100%;
+	z-index: 3;
 }
