@@ -5,6 +5,7 @@ div.vex-tabdiv {
   white-space: pre;
   margin-left: auto;
   margin-right: auto;
+  z-index: 1;
 }
 
 div.vex-tabdiv .editor {
