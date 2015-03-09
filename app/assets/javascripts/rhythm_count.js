@@ -33,8 +33,6 @@ $(document).ready(function() {
 	var delta;
 	var pos;
 
-	var noteLength = 0.05;
-
     window.ctx3;
     window.vex;
     var drawDis = 0;
@@ -137,7 +135,7 @@ $(document).ready(function() {
 		gainNode.connect(audioContext.destination); //gain connect to speaker
 
 		osc1.start(time); //generate sound instantly
-		osc1.stop(time + noteLength);
+		osc1.stop(time + 0.05);
 	};
 
 	function tick2(time) {
@@ -153,7 +151,7 @@ $(document).ready(function() {
 		gainNode.connect(audioContext.destination); //gain connect to speaker
 
 		osc2.start(time); //generate sound instantly
-		osc2.stop(time + noteLength);
+		osc2.stop(time + 0.05);
 		};
 
 	var $rhythmCount = $('.rhythm-count');
@@ -163,60 +161,60 @@ $(document).ready(function() {
 		drawStaticTempoLine();	
 
 
-	var testN = $('.testNotes').text();
-	parseTest(testN);
+		var testN = $('.testNotes').text();
+		parseTest(testN);
 
-	$('#metronome').click(function() {
-     	ctx3.clearRect(0,0, 680, 145)
-     	noteTime = audioContext.currentTime + secondsPerBeat;
-     	noteTime2 = audioContext.currentTime + secondsPerBeat;
-     	// $('#eval').html("").removeClass("alert alert-info");
-     	// $('#score').html("");
+		$('#metronome').click(function() {
+	     	ctx3.clearRect(0,0, 680, 145)
+	     	noteTime = audioContext.currentTime + secondsPerBeat;
+	     	noteTime2 = audioContext.currentTime + secondsPerBeat;
+	     	// $('#eval').html("").removeClass("alert alert-info");
+	     	// $('#score').html("");
 
-		blink = setTimeout(drawCountOff2, tempoTime/2);
-		metro = setInterval(drawTime2, tempoTime);
+			blink = setTimeout(drawCountOff2, tempoTime/2);
+			metro = setInterval(drawTime2, tempoTime);
 
-		//setting up 5 counts and the expected time of the exercise notes
-			for(i=0; i<4+testList.length; i++) {
-				tick(noteTime2);
-				noteTime2 += secondsPerBeat;
-			};
-
-			for(i=0; i<4+testList.length; i++) {
-				if(i <= 3) {
-				noteTime += secondsPerBeat;
-				} else {
-				expectedList.push([testList[i-4][0], noteTime]);
-				noteTime += secondsPerBeat * testList[i-4][1];
+			//setting up 5 counts and the expected time of the exercise notes
+				for(i=0; i<4+testList.length; i++) {
+					tick(noteTime2);
+					noteTime2 += secondsPerBeat;
 				};
-			};
 
-		isPlaying = true;
-	});
+				for(i=0; i<4+testList.length; i++) {
+					if(i <= 3) {
+					noteTime += secondsPerBeat;
+					} else {
+					expectedList.push([testList[i-4][0], noteTime]);
+					noteTime += secondsPerBeat * testList[i-4][1];
+					};
+				};
 
-	$('#stop').click(function() {
-		if(isPlaying) {
-        //stop playing and return
-        clearInterval(metro);
-        // sourceNode.disconnect();
-        // sourceNode = null;
-        // analyser = null;
-        isPlaying = false;
-        // clearCanvas();
-		if(!window.cancelAnimationFrame) {
-			window.cancelAnimationFrame = window.webkitCancelAnimationFrame;
-			};
-        window.cancelAnimationFrame( moveTempoLine );
-    	}
-    	evalNotes(); 
-	});
+			isPlaying = true;
+		});
 
-	$(document).keypress(function() {
-		var beepTime = audioContext.currentTime
-		tick2(beepTime);
-		noteList.push(["B", beepTime]);
+		$('#stop').click(function() {
+			if(isPlaying) {
+	        //stop playing and return
+	        clearInterval(metro);
+	        // sourceNode.disconnect();
+	        // sourceNode = null;
+	        // analyser = null;
+	        isPlaying = false;
+	        // clearCanvas();
+			if(!window.cancelAnimationFrame) {
+				window.cancelAnimationFrame = window.webkitCancelAnimationFrame;
+				};
+	        window.cancelAnimationFrame( moveTempoLine );
+	    	}
+	    	evalNotes(); 
+		});
 
-		drawTempoLine2();
-	});
-	}
+		$(document).keypress(function() {
+			var beepTime = audioContext.currentTime
+			tick2(beepTime);
+			noteList.push(["B", beepTime]);
+
+			drawTempoLine2();
+		});
+	};
 })
