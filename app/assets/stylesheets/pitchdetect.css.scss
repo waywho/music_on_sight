@@ -27,6 +27,7 @@ div.vague {
 	border-radius: 8px; 
 	text-align: center; 
 	padding-top: 5px;
+	margin: 10px;
 }
 	
 #output { 
@@ -53,6 +54,8 @@ div.vague {
 #canvas {
     position: absolute;
     left: 0px;
+    margin-left: auto;
+    margin-right: auto;
     top: 0px;
     display: block;
     background-color: white;
@@ -68,6 +71,8 @@ div.vague {
 #canvas2 {
     position: absolute;
     left: 0px;
+    margin-left: auto;
+    margin-right: auto;
     top: 0px;
     display: block;
     z-index: 2;
