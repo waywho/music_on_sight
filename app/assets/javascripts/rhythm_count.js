@@ -86,8 +86,8 @@ $(document).ready(function() {
 		ctx3.clearRect(0,0, 680, 145)
 		ctx3.beginPath();
 		pos = drawPos + drawDis
-		ctx3.moveTo(drawPos + drawDis, 10);
-		ctx3.lineTo(drawPos + drawDis, 145)
+		ctx3.moveTo(pos, 10);
+		ctx3.lineTo(pos, 145)
 		// ctx2.arc(xtime, 25, 10, 0, 2 * Math.PI, false);
 		ctx3.fillStyle = '#009933';
 		// ctx2.fill();
