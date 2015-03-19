@@ -5,9 +5,8 @@
 		tempo = <span id = 'tempo'><%= @sightreading.tempo %> </span><%= @sightreading.time %>, <%= @sightreading.key %>
 		<%= link_to 'Edit', edit_instructor_sightread_challenge_path(@sightreading), :class => 'btn btn-success pull-right' %>
 	</div>
-		<div class = 'test-panel col-xs-12 col-md-12'>
 
-				<div class="vex-tabdiv"  width=680 scale=1.0>
+				<div class="vex-tabdiv center-block text-center"  width=680 scale=1.0>
 				
 			      options space=20
 
@@ -19,7 +18,6 @@
 			      options space=25
 
 			    </div>
-		</div>
 <!-- 		<div class = 'col-xs-12 col-md-12'>
 			<%= simple_form_for Score.new, :url => sightread_challenge_add_score_path(@sightreading) do |f| %>
 			<%= f.input 'total' %>
@@ -30,8 +28,8 @@
 
 	<br class='clr' />
 	<br />
-	<div class = 'sing-panel col-xs-12'>
-			<div class = 'col-xs-2'>
+	<div class = 'sing-panel center-block text-center'>
+			<div class = 'col-xs-12 col-md-2 pull-right'>
 				<div id='detector' class='vague'>
 					<div class="pitch"><span id="pitch">--</span>Hz</div>
 					<div class="note"><span id="note">--</span></div>   
@@ -39,7 +37,7 @@
 					<div id="detune"><span id="detune_amt">--</span><span id="flat">cents &#9837;</span><span id="sharp">cents &#9839;</span></div>
 				</div>
 			</div>
-			<div class = 'music-panel col-xs-8'>
+			<div class = 'music-panel col-xs-12 col-md-8'>
 				<img id = 'treble' src = '/assets/treble.png'>
 				<canvas id="canvas2" height="250" width="685"></canvas>
 				<canvas id="canvas" height="250" width="685" ></canvas>
