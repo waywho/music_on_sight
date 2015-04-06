@@ -386,11 +386,10 @@ function updatePitch( time ) {
 
 	 	var note =  noteFromPitch( pitch );
 		noteElem.innerHTML = noteStrings[note%12];
+	 	pitchList.push(pitch);
 
-	 	pitchList.push(note);
 
-
-	 	var lastSix = pitchList.slice(-8);
+	 	var lastSix = pitchList.slice(-4);
 	 	var min = lastSix[0];
 	 	var max = lastSix[0];
 
@@ -410,26 +409,24 @@ function updatePitch( time ) {
 
 	 	// pitch = sum/lastFour.length;
 
-	 	if(max-min < 1){
+	 	if(max-min < 2){
 	 		var y3 = (note - 69 + 64);
-		 	var y = 190 - (10 * noteNo[(y3%20)]);
+		 	var y = 112 - (6 * noteNo[(y3%20)]);
 			var y2 = Math.round(pitch)/10;
 
 			noteList.push([noteStrings[note%12], audioContext.currentTime]);
 
 			ctx.beginPath();
-			ctx.arc(tempoLineDrawPos, y, 8, 0, 2 * Math.PI, false);
+			ctx.arc(tempoLineDrawPos, y, 6, 0, 2 * Math.PI, false);
 			ctx.fillStyle = 'black';
 			ctx.fill();
 			ctx.closePath();
-	        // tempoLineDrawPos += 1;
+	        tempoLineDrawPos += 1;
 	 	};
 
-        if(tempoLineDrawPos >= canvasWidth) {
-            tempoLineDrawPos = startPos;
-            window.clearTempoLinePosIncrement();
-            clearCanvas();
-        };
+        // if(tempoLineDrawPos >= canvasWidth) {
+        //     clearCanvas();
+        // };
 		
 		var detune = centsOffFromPitch( pitch, note );
 		if (detune == 0 ) {

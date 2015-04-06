@@ -36,7 +36,6 @@ function evalNotes() {
 			missedNotes.push(i + 1)
 		};
 	};
-	console.log(score);
 	
 	// $.post('/sightread_challenge/1/add_score', {score: {total: score}}).success(function(data) {console.log(data);});
 	$.post($('.score').data('post-url'), {score: {total: score}}).success(function(data) {console.log(data);});

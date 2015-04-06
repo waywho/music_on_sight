@@ -35,9 +35,10 @@ gem 'bootstrap-sass', '~> 3.3.2'
 
 gem 'autoprefixer-rails'
 
+gem 'simple_form'
+
 gem 'devise'
 
-gem 'simple_form'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

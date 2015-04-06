@@ -15,7 +15,7 @@ class SightreadChallengesController < ApplicationController
 		@sightreading = SightreadChallenge.find(params[:sightread_challenge_id])
 		
 		if @sightreading.score.nil?
-			@score = current_user.scores.create(score_params.merge(:sightread_challenge => @sightreading))
+			@score = current_user.score.create(score_params.merge(:sightread_challenge => @sightreading))
 			# @score = Score.create(score_params.merge(:sightread_challenge => @sightreading))
 			render :json => @score
 		else	
@@ -27,11 +27,11 @@ class SightreadChallengesController < ApplicationController
 		#@score.save
 	end
 
-	# def update
-	# 	@sightread = SightreadChallenge.find(params[:id])
-	# 	@sightread.update_attributes(challenge_params)
-	# 	redirect_to sightread_challenges_path
-	# end
+	def update
+		@sightread = SightreadChallenge.find(params[:id])
+		@sightread.update_attributes(challenge_params)
+		redirect_to sightread_challenges_path
+	end
 
 	private
 	def challenge_params

@@ -28004,7 +28004,7 @@ Vex.Flow.TabDiv.prototype.init = function(sel, options) {
 
   // Get tabdiv properties
   this.width = parseInt($(sel).attr("width")) || 400;
-  this.height = parseInt($(sel).attr("height")) || 200;
+  this.height = parseInt($(sel).attr("height")) || 180;
   this.scale = parseFloat($(sel).attr("scale")) || 1.0;
 
   // If the Raphael.js sources are included, then use Raphael, else
@@ -28031,7 +28031,7 @@ Vex.Flow.TabDiv.prototype.init = function(sel, options) {
   this.editor = $(sel).attr("editor") || "";
   this.show_errors = $(sel).attr("show-errors") || "";
   this.editor_width= $(sel).attr("editor_width") || this.width;
-  this.editor_height= $(sel).attr("editor_height") || 200;
+  this.editor_height= $(sel).attr("editor_height") || 180;
 
   var that = this;
   if (this.editor == "true") {

@@ -2,11 +2,12 @@
 
 	<div class = 'col-xs-12 col-md-12'>
 		<h1><%= @sightreading.title %></h1>
-		tempo = <span id = 'tempo'><%= @sightreading.tempo %> </span><%= @sightreading.time %>, <%= @sightreading.key %>
+		tempo = <span id = 'tempo'><%= @sightreading.tempo %>, </span><%= @sightreading.time %>, <%= @sightreading.key %>
 		<%= link_to 'Edit', edit_instructor_sightread_challenge_path(@sightreading), :class => 'btn btn-success pull-right' %>
 	</div>
+	<br class = 'clr' />
 
-				<div class="vex-tabdiv center-block text-center"  width=680 scale=1.0>
+	<div class="vex-tabdiv center-block text-center"  width=680 scale=0.9 >
 				
 			      options space=20
 
@@ -17,7 +18,8 @@
 
 			      options space=25
 
-			    </div>
+	</div>
+	<button id= 'player' class ='player btn btn-success'>Play first note</button>
 <!-- 		<div class = 'col-xs-12 col-md-12'>
 			<%= simple_form_for Score.new, :url => sightread_challenge_add_score_path(@sightreading) do |f| %>
 			<%= f.input 'total' %>
@@ -39,8 +41,8 @@
 			</div>
 			<div class = 'music-panel col-xs-12 col-md-8'>
 				<img id = 'treble' src = '/assets/treble.png'>
-				<canvas id="canvas2" height="250" width="685"></canvas>
-				<canvas id="canvas" height="250" width="685" ></canvas>
+				<canvas id="canvas2" height="150" width="685"></canvas>
+				<canvas id="canvas" height="150" width="685" ></canvas>
 			</div>
 	</div>
 
@@ -61,7 +63,7 @@
 </div>
 
 	<div class = 'total-score col-xs-4 col-md-4 text-center'>
-		<p><h3>Your Sightreading Score: </h3></p>
+		<p><h3>Your sightreading Score: </h3></p>
 		<h4><%= @scores %></h4>
 	</div>
 

@@ -70,7 +70,17 @@ $(window).ready(function() {
 	function drawTime() {
 		// var lineTime = new Date();
 		// var msec = lineTime.getMilliseconds();
-		if(tempoLinePosIncrement >= 9) {
+
+		if(metronomeBeatCount-4 > testList.length) {
+			clearInterval(metro);
+	        window.cancelAnimationFrame(rafID);
+	        sourceNode.disconnect();
+	        sourceNode = null;
+	        analyser = null;
+	        isPlaying = false;
+			evalNotes();
+		}
+		if(tempoLinePosIncrement >= 8) {
 			clearCanvas();
             tempoLineDrawPos = startPos;
 			window.clearTempoLinePosIncrement();
@@ -89,12 +99,80 @@ $(window).ready(function() {
         metronomeBeatCount += 1;
 		};
 
+	var soundDict = {'C': '/assets/C4.mp3', 
+		'C@': '/assets/B3.mp3', 
+		'C#': '/assets/Db4.mp3', 
+		'D@': '/assets/Db4.mp3',
+		'D': '/assets/D4.mp3',
+		'D#': '/assets/Eb4.mp3',
+		'E@': '/assets/Eb4.mp3',
+		'E': '/assets/E4.mp3',
+		'E#': '/assets/F4.mp3',
+		'F': '/assets/F4.mp3',
+		'F#': '/assets/Gb4.mp3',
+		'G@': '/assets/Gb4.mp3',
+		'G': '/assets/G4.mp3',
+		'G#': '/assets/Ab4.mp3',
+		'A@': '/assets/Ab4.mp3',
+		'A': '/assets/A4.mp3',
+		'A#': '/assets/Bb4.mp3',
+		'B@': '/assets/Bb4.mp3',
+		'B': '/assets/B4.mp3',
+		'B#': '/assets/C4.mp3'
+	 };
+
+	function firstNotePlayer (pitch, time) {
+		osc2 = audioContext.createOscillator(); //create the sound source
+		osc3 = audioContext.createOscillator();
+		osc2.type = "sine"; //square wave;
+		osc3.type = "square";
+		osc2.frequency.value = pitch;
+		osc3.frequency.value = 130.81;
+
+		gainNode = audioContext.createGain(); //create a gain note
+		gainNode.gain.value = 0.1; //set gain node to 30 percent volume
+
+		osc2.connect(gainNode); //connect sound to gain node
+		osc3.connect(gainNode);
+		
+		gainNode.connect(audioContext.destination); //gain connect to speaker
+
+		osc2.start(time); //generate sound instantly
+		osc3.start(time);
+		osc2.stop(time + 0.6);
+		osc3.stop(time + 0.6);
+	};
+
 		var $can2 = $('#canvas2')
 
 		if($can2.length>0) {
-	    ctx2 = $('#canvas2')[0].getContext('2d');
-	    console.log(ctx2);
-		drawTempoDot(startPos);
+		    ctx2 = $('#canvas2')[0].getContext('2d');
+		    console.log(ctx2);
+			drawTempoDot(startPos);
+
+			//parsing the challenge test
+			var testN = $('.testNotes').text();
+	    	parseTest(testN);
+
+	    	//load first note sound
+			var getSound = new XMLHttpRequest(); 
+			getSound.open("GET", soundDict[testList[0][0]], true); 
+			getSound.responseType = "arraybuffer"; 
+			getSound.onload = function() { 
+			audioContext.decodeAudioData(getSound.response, function(buffer){ 
+				electro = buffer; 
+				}); 
+			}
+			getSound.send();
+
+	    	$('#player').click(function () {
+	    		// now = audioContext.currentTime
+	    		// firstNotePlayer (261.63, now);
+	    		var playSound = audioContext.createBufferSource();
+	    		playSound.buffer = electro;
+	    		playSound.connect(audioContext.destination);
+	    		playSound.start(0);
+    		});
 
 		$('#metronome').click(function() {
 	     	clearCanvas();
@@ -110,10 +188,6 @@ $(window).ready(function() {
 				// setTimeout(drawTime, tempoTime*4);
 				blink = setTimeout(drawCountOff, tempoTime/2);
 				metro = setInterval(drawTime, tempoTime);
-				
-				//parsing the challenge test
-				var testN = $('.testNotes').text();
-		    	parseTest(testN);
 
 
 				//setting up 5 counts and the expected time of the exercise notes
