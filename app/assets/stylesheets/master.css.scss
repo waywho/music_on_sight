@@ -42,16 +42,34 @@ body {
 }*/
 
 .navba {
-	border-radius: 5px;
+	border-radius: 15px;
 	border: 5px solid black;
-	height: 50px;
 	width: 200px;
+	height: 100px;
 	margin: auto;
+	vertical-align: middle;
+	color: #666964;
 }
 
+.navba a {
+	font-weight: bold;
+	color: #666964;
+	text-decoration: none;
+}
+
+.navba a:hover {
+	text-decoration: none;
+	color: #EDEDED;
+}
+
+.navba:hover {
+	background-color: #9EDE5D;
+	text-decoration: none;
+}
 
 .cover-img {
 	height: 200px;
+	margin: auto;
 }
 
 h1 {
@@ -74,15 +92,6 @@ h3 {
 
 .clr {
 	clear: both;
-}
-
-a {
-	font-weight: bold;
-	text-decoration: none;
-}
-
-a:hover {
-	text-decoration: none;
 }
 
 hr {
