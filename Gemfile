@@ -39,6 +39,8 @@ gem 'simple_form'
 
 gem 'devise'
 
+gem 'masonry-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

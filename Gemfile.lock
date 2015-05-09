@@ -61,6 +61,8 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    masonry-rails (0.2.4)
+      railties
     mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.10.1)
@@ -132,6 +134,7 @@ DEPENDENCIES
   devise
   jbuilder (~> 1.2)
   jquery-rails
+  masonry-rails
   pg
   rails (= 4.0.1)
   sass-rails (~> 4.0.0)
