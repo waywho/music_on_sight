@@ -1,10 +1,15 @@
+
 <div class = "col-xs-10 col-xs-offset-1">
 	<br />
-	<h2>Rhythm Exercises</h2>
-
-	<% @rhythms.each do |rhythm| %>
-		<h3><%= link_to rhythm.title, rhythm_challenge_path(rhythm) %></h3>
+	<h2>Welcome to Your Rythm Challenges</h2>
+	<div id="masonry-container" class="transitions-enabled infinite-scroll clearfix">
+		<% @rhythms.each do |rhythm| %>
+		<div class = 'box col2 text-center'>
+			
+			<p><h3><%= link_to rhythm.title, rhythm_challenge_path(rhythm) %></h3></p>
+			<p><%= rhythm.tempo %>, <%= rhythm.time %></p>
+			
+		</div>
 		<% end %>
-	<hr />
-
+	</div>
 </div>

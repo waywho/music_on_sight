@@ -1,12 +1,14 @@
 <div class = "col-xs-10 col-xs-offset-1">
 	<br />
 	<h2>Welcome to Your Sight Reading Challenges</h2>
-
-	<br />
-	<% @sightreadings.each do |sightreading| %>
-		<p><h3><%= link_to sightreading.title, sightread_challenge_path(sightreading) %></h3></p>
-		<p><%= sightreading.tempo %>, <%= sightreading.time %>, <%= sightreading.key %></p>
+	<div id="masonry-container" class="transitions-enabled infinite-scroll clearfix">
+		<% @sightreadings.each do |sightreading| %>
+		<div class = 'box col2 text-center'>
+			
+			<p><h3><%= link_to sightreading.title, sightread_challenge_path(sightreading) %></h3></p>
+			<p><%= sightreading.tempo %>, <%= sightreading.time %>, <%= sightreading.key %></p>
+			
+		</div>
 		<% end %>
-	<hr />
-
+	</div>
 </div>
