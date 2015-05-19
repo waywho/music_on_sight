@@ -1,0 +1,22 @@
+<div class = 'booyah-box col-xs-10 col-xs-offset-1'>
+
+	<div class = 'col-xs-12 col-md-12'>
+		<h1><%= @sightreading.title %></h1>
+		tempo = <span id = 'tempo'><%= @sightreading.tempo %>, </span><%= @sightreading.time %>, <%= @sightreading.key %>
+		<%= link_to 'Edit', edit_instructor_sightread_challenge_path(@sightreading), :class => 'btn btn-success pull-right' %>
+	</div>
+	<br class = 'clr' />
+
+	<div class="vex-tabdiv center-block text-center"  width=680 scale=0.9 >
+				
+			      options space=20
+
+			    options player=true tempo=<%= @sightreading.tempo %> instrument=acoustic_grand_piano
+			    tabstave notation=true tablature=false
+			    time=<%= @sightreading.time %> 
+			    notes <%= @sightreading.notes %>
+
+			      options space=25
+
+	</div>
+</div>
