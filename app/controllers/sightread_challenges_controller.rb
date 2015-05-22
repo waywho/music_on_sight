@@ -9,6 +9,7 @@ class SightreadChallengesController < ApplicationController
 		@sightreading = SightreadChallenge.find(params[:id])
 		@user = current_user
 		@score = current_score
+		@scores = current_user.scores.sum(:total)
 		# @scores = Score.sum(:user_id => current_user.id)
 	end
 
