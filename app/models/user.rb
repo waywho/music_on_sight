@@ -5,5 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
  has_many :scores
- has_many :sightread_challenges 
+ has_many :sightread_challenges
+ has_many :completed_sightreadings, :through => :scores, :source => :sightread_challenge
+ has_many :sightread_challenges, :through => :scores
 end
