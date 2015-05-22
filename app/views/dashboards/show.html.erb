@@ -3,8 +3,8 @@
 <div class = "col-xs-10 col-xs-offset-1">
 	<h2>My Dashboard</h2>
 
-	<% current_user.completed_sightread_challenges.each do |challenge| %>
-	<%= challenge.title %>: 
-	<%= challenge.score.total %>
+	<% current_user.completed_sightreadings.each do |challenge| %>
+	<%= challenge.title %>
+	<p>
 	<% end %>
 </div>
