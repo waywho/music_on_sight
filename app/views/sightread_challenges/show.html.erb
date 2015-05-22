@@ -1,4 +1,11 @@
 <div class = 'booyah-box col-xs-10 col-xs-offset-1'>
+you are signed in as: <%= @user.email %>, id: <%= @user.id %>
+you last scored ... in this challenge.
+<p>
+	<% if @score.nil? %>
+	<% else %>
+	current score: score id: <%= @score.id %>: <%= @score.total %>
+	<% end %>
 
 	<div class = 'col-xs-12 col-md-12'>
 		<h1><%= @sightreading.title %></h1>
