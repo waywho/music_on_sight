@@ -6,5 +6,6 @@ class User < ActiveRecord::Base
 
  has_many :scores
  has_many :sightread_challenges
+ has_many :completed_sightread_challenges, :through => :scores, :source => :sightread_challenge
  
 end
