@@ -16,8 +16,13 @@
  *= require 'masonry/infinitescroll'
  *= require 'masonry/right-to-left'
  *= require 'masonry/transitions'
- *= require_tree .
  */
-
+ 
  @import "bootstrap-sprockets";
  @import "bootstrap";
+ @import 'master';
+ @import 'pitchdetect';
+ @import 'rhythm_challenges';
+ @import 'sightread_challenges';
+ @import 'vextab';
+ @import 'sticky-footer-navbar'
