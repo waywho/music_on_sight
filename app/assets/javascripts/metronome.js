@@ -91,8 +91,8 @@ $(window).ready(function() {
         	// metro = setInterval(function(){
         	clearTimeout(blink);
         	clearInterval(wipe);
-        	tempoLinePosIncrement += 1
-			tempoLineDrawPos= 75 * tempoLinePosIncrement;
+   //      	tempoLinePosIncrement += 1
+			// tempoLineDrawPos= 75 * tempoLinePosIncrement;
 			drawTempoDot(tempoLineDrawPos);
 			// }, tempoTime);
         };
@@ -121,27 +121,27 @@ $(window).ready(function() {
 		'B#': '/assets/C4.mp3'
 	 };
 
-	function firstNotePlayer (pitch, time) {
-		osc2 = audioContext.createOscillator(); //create the sound source
-		osc3 = audioContext.createOscillator();
-		osc2.type = "sine"; //square wave;
-		osc3.type = "square";
-		osc2.frequency.value = pitch;
-		osc3.frequency.value = 130.81;
+	// function firstNotePlayer (pitch, time) {
+	// 	osc2 = audioContext.createOscillator(); //create the sound source
+	// 	osc3 = audioContext.createOscillator();
+	// 	osc2.type = "sine"; //square wave;
+	// 	osc3.type = "square";
+	// 	osc2.frequency.value = pitch;
+	// 	osc3.frequency.value = 130.81;
 
-		gainNode = audioContext.createGain(); //create a gain note
-		gainNode.gain.value = 0.1; //set gain node to 30 percent volume
+	// 	gainNode = audioContext.createGain(); //create a gain note
+	// 	gainNode.gain.value = 0.1; //set gain node to 30 percent volume
 
-		osc2.connect(gainNode); //connect sound to gain node
-		osc3.connect(gainNode);
+	// 	osc2.connect(gainNode); //connect sound to gain node
+	// 	osc3.connect(gainNode);
 		
-		gainNode.connect(audioContext.destination); //gain connect to speaker
+	// 	gainNode.connect(audioContext.destination); //gain connect to speaker
 
-		osc2.start(time); //generate sound instantly
-		osc3.start(time);
-		osc2.stop(time + 0.6);
-		osc3.stop(time + 0.6);
-	};
+	// 	osc2.start(time); //generate sound instantly
+	// 	osc3.start(time);
+	// 	osc2.stop(time + 0.6);
+	// 	osc3.stop(time + 0.6);
+	// };
 
 		var $can2 = $('#canvas2')
 
