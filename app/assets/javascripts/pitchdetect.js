@@ -23,7 +23,6 @@ SOFTWARE.
 */
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
-
     window.requestAnimFrame = (function(){
       return  window.requestAnimationFrame       ||
               window.webkitRequestAnimationFrame ||
@@ -417,11 +416,11 @@ function updatePitch( time ) {
 			noteList.push([noteStrings[note%12], audioContext.currentTime]);
 
 			ctx.beginPath();
-			ctx.arc(tempoLineDrawPos, y, 6, 0, 2 * Math.PI, false);
+			ctx.arc(DrawPos, y, 6, 0, 2 * Math.PI, false);
 			ctx.fillStyle = 'black';
 			ctx.fill();
 			ctx.closePath();
-	        tempoLineDrawPos += 1;
+	        DrawPos += 1;
 	 	};
 
         // if(tempoLineDrawPos >= canvasWidth) {

@@ -21,4 +21,3 @@
 //= require drawstaff
 //= require masonry/jquery.masonry
 //= require isotope/jquery.isotope
-//= require_tree .

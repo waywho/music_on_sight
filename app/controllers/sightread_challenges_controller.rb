@@ -1,5 +1,6 @@
 class SightreadChallengesController < ApplicationController
 	before_action :authenticate_user!, :only => [:show]
+	skip_before_filter  :verify_authenticity_token
 
 	def index
 		@sightreadings = SightreadChallenge.all
