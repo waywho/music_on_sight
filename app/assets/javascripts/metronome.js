@@ -11,7 +11,6 @@
     var ctx2;
     var DrawPos = 75;
 
-
 	function drawTempoDot(xtime) {
 		ctx2.clearRect(0,0, canvasWidth, canvasHeight);
 		ctx2.beginPath();
@@ -54,6 +53,8 @@ $(window).ready(function() {
 	var wipe;
 	var tempoLinePosIncrement = 0;
 	var	metronomeBeatCount = 0;
+	var electro;
+
 	window.clearTempoLinePosIncrement = function () {
 		tempoLinePosIncrement = 0;
 	}
@@ -96,7 +97,7 @@ $(window).ready(function() {
 			// }, tempoTime);
         };
         metronomeBeatCount += 1;
-		};
+	};
 
 	var soundDict = {'C': '/assets/C4.mp3', 
 		'C@': '/assets/B3.mp3', 
@@ -142,7 +143,7 @@ $(window).ready(function() {
 	// 	osc3.stop(time + 0.6);
 	// };
 
-	var $can2 = $('#canvas2')
+	var $can2 = $('#canvas2');
 
 	if($can2.length>0) {
 	    ctx2 = $('#canvas2')[0].getContext('2d');
@@ -158,8 +159,8 @@ $(window).ready(function() {
 		getSound.open("GET", soundDict[testList[0][0]], true); 
 		getSound.responseType = "arraybuffer"; 
 		getSound.onload = function() { 
-		audioContext.decodeAudioData(getSound.response, function(buffer){ 
-			electro = buffer; 
+			audioContext.decodeAudioData(getSound.response, function(buffer){ 
+				electro = buffer; 
 			}); 
 		};
 		getSound.send();
@@ -168,7 +169,6 @@ $(window).ready(function() {
 	$('#player').click(function() {
 		// now = audioContext.currentTime
 		// firstNotePlayer (261.63, now);
-		var electro;
 		var playSound = audioContext.createBufferSource();
 		playSound.buffer = electro;
 		playSound.connect(audioContext.destination);
