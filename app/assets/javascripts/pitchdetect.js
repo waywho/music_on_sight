@@ -23,7 +23,6 @@ SOFTWARE.
 */
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
-
     window.requestAnimFrame = (function(){
       return  window.requestAnimationFrame       ||
               window.webkitRequestAnimationFrame ||
