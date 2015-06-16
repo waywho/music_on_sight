@@ -26,11 +26,13 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
 <!--           <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
-          <li><%= link_to new_instructor_sightread_challenge_path do %>
+   <!--        <li><%= link_to new_instructor_sightread_challenge_path do %>
             <i class = 'glyphicn glyphicon-plus'></i>
             New Singing Challenge
             <% end %>
-          </li>
+          </li> -->
+          <li><%= link_to 'Sight Reading', sightread_challenges_path %></li>
+          <li><%= link_to 'Rhythm', rhythm_challenges_path %></li>
         </ul>
         <form class="navbar-form navbar-left" role="search">
           <div class="form-group">

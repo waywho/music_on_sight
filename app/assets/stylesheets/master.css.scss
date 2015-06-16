@@ -12,9 +12,14 @@
 
 .navbar {
 	border-radius: 0;
+	font-family: 'League Spartan', 'Helvetica Neue', Helvetica, sans-serif;
 }
 
 body {
+	font-family: 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
 	font-family: 'League Spartan', 'Helvetica Neue', Helvetica, sans-serif;
 }
 
@@ -149,6 +154,15 @@ button {
 .test-panel {
 	margin: auto;
 	padding: auto;
+}
+
+.score-table, .score-table th, .score-table td {
+	border: 1px solid black;
+}
+
+.score-table td, .score-table th {
+	padding: 10px;
+	height: 30px;
 }
 
 /*masonry styles*/

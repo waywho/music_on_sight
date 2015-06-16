@@ -50,7 +50,7 @@
 
 $(window).ready(function() {
 	// var context = new AudioContext() || new webkitAudioContext(); //create the audio container
-	window.AudioContext = window.AudioContext || window.webkitAudioContext;
+
 
 	var wipe;
 	var tempoLinePosIncrement = 0;
