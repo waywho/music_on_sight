@@ -2,27 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.rhythm-count {
-	position: relative;
-    display: block;
-    min-height: 145px;
-    z-index: 3;
+.rhythm-canvas {
+	position: absolute;
+	left: 100px;
+    display: inline;
+    z-index: 2;
     margin-left: auto;
     margin-right: auto;
 }
 
 .vex-canvas {
-    display: block;
-    z-index: 2;
+	position: absolute;
+	left: 100px;
+    display: inline;
+    z-index: 1;
     margin: auto;
 }
 
-.rhythm {
-	position: absolute;
-	left: 10px;
-	top: 109px;
-	display: block;
-	min-height: 145px;
-	width: 100%;
-	z-index: 3;
+.count-down {
+	display: inline;
 }

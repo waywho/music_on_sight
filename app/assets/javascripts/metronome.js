@@ -68,8 +68,8 @@ $(window).ready(function() {
 
 	// tempo = parseInt($('#tempo').text(), 10);
  //   	console.log(tempo);
-	window.tempoTime = 60000/tempo;
-	window.secondsPerBeat = 60.0/tempo;
+	// window.tempoTime = 60000/tempo;
+	// window.secondsPerBeat = 60.0/tempo;
 
 	function drawTime() {
 		// var lineTime = new Date();

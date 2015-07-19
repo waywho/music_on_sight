@@ -28011,7 +28011,10 @@ Vex.Flow.TabDiv.prototype.init = function(sel, options) {
   // resort to HTML5 Canvas.
   if (typeof (Raphael) == "undefined") {
     this.canvas = $('<canvas></canvas>').addClass("vex-canvas");
+    this.canvasRhythm = $('<canvas></canvas').addClass("rhythm-canvas");
     $(sel).append(this.canvas);
+    //WHU added: render rhythm canvas
+    $(sel).append(this.canvasRhythm);
     this.renderer = new Vex.Flow.Renderer(this.canvas[0],
         Vex.Flow.Renderer.Backends.CANVAS);
   } else {
