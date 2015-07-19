@@ -52,7 +52,7 @@ $(document).ready(function() {
     then = now;
   	};
 
-	function drawTime2() {
+	function tempoLineInit() {
 		// var lineTime = new Date();
 		// var msec = lineTime.getMilliseconds();
         // if(count2<3) {
@@ -87,7 +87,7 @@ $(document).ready(function() {
 			// countDownCanvasCtx.font = "60px Arial";
 			// countDownCanvasCtx.fillStyle = '#FF0000';
 			// countDownCanvasCtx.fillText("go", 0, 100);
-			drawTime2();
+			tempoLineInit();
 		}
 	};
 
@@ -129,11 +129,11 @@ $(document).ready(function() {
 		vex.closePath();
 	};
 	
-	function drawCountOff2() {
-		wipe = setInterval(function (){
-			ctx3.clearRect(0,0, canvasWidth, canvasHeight);
-		}, tempoTime);
-	};
+	// function drawCountOff2() {
+	// 	wipe = setInterval(function (){
+	// 		ctx3.clearRect(0,0, canvasWidth, canvasHeight);
+	// 	}, tempoTime);
+	// };
 
 
 	function beep(time) {
@@ -203,7 +203,7 @@ $(document).ready(function() {
 		     	// $('#score').html("");
 
 				// blink = setTimeout(drawCountOff2, tempoTime/2);
-				// metro = setInterval(drawTime2, tempoTime);
+				// metro = setInterval(tempoLineInit, tempoTime);
 				countIn = setTimeout(setInterval(countDown, tempoTime), tempoTime * 2);
 
 
